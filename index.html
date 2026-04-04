@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DroneHub | Premium Drones Canada</title>
+
+<meta name="description" content="Buy high-performance drones in Canada. Fast delivery, tracking, and premium aerial tech.">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #020617;
+  color: #fff;
+}
+
+/* NAV */
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background: #0f172a;
+}
+nav a {
+  color: #38bdf8;
+  text-decoration: none;
+  margin-left: 15px;
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+}
+.hero h1 {
+  font-size: 42px;
+}
+.hero p {
+  color: #94a3b8;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  padding: 40px;
+  gap: 20px;
+}
+
+.card {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+.card img {
+  width: 100%;
+  border-radius: 10px;
+}
+.price {
+  color: #38bdf8;
+  font-size: 20px;
+}
+
+/* BUTTON */
+.btn {
+  display: inline-block;
+  padding: 10px 15px;
+  background: #38bdf8;
+  color: #000;
+  border-radius: 6px;
+  margin-top: 10px;
+  text-decoration: none;
+}
+
+/* TRACKING */
+.tracking {
+  text-align: center;
+  padding: 60px 20px;
+  background: #0f172a;
+}
+input {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  margin-right: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+  <h2>🚁 DroneHub</h2>
+  <div>
+    <a href="#">Home</a>
+    <a href="#shop">Shop</a>
+    <a href="#track">Track Order</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Premium Drones Delivered Fast</h1>
+  <p>Shop high-performance drones with real-time tracking</p>
+  <a href="#shop" class="btn">Browse Drones</a>
+</section>
+
+<!-- PRODUCT GRID -->
+<section id="shop" class="grid">
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1508612761958-e931c3a7e9b3" />
+    <h3>Pro Aerial X</h3>
+    <p>4K camera • 30 min flight</p>
+    <p class="price">$799</p>
+    <a href="product.html?id=1" class="btn">View</a>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f" />
+    <h3>SkyDrone Mini</h3>
+    <p>Compact • Beginner friendly</p>
+    <p class="price">$299</p>
+    <a href="product.html?id=2" class="btn">View</a>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1508614999368-9260051292e5" />
+    <h3>Drone Pro Max</h3>
+    <p>8K • Long-range • AI tracking</p>
+    <p class="price">$1299</p>
+    <a href="product.html?id=3" class="btn">View</a>
+  </div>
+
+</section>
+
+<!-- TRACKING SECTION -->
+<section id="track" class="tracking">
+  <h2>Track Your Drone</h2>
+  <input type="text" id="tracking" placeholder="Enter tracking number">
+  <button class="btn" onclick="trackOrder()">Track</button>
+  <div id="result" style="margin-top:20px;"></div>
+</section>
+
+<!-- SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<script>
+const SUPABASE_URL = "YOUR_SUPABASE_URL";
+const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+
+const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+async function trackOrder() {
+  const tracking = document.getElementById("tracking").value;
+  const resultDiv = document.getElementById("result");
+
+  resultDiv.innerHTML = "Checking...";
+
+  const { data, error } = await client
+    .from("orders")
+    .select("*")
+    .eq("tracking_number", tracking)
+    .limit(1);
+
+  if (data && data.length > 0) {
+    const order = data[0];
+    resultDiv.innerHTML = `
+      <p>Status: ${order.status}</p>
+      <p>Location: ${order.location}</p>
+    `;
+  } else {
+    resultDiv.innerHTML = "No order found.";
+  }
+}
+</script>
+
+</body>
+</html>
