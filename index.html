@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DroneHub | Premium Drones Canada</title>
 
-<meta name="description" content="Buy high-performance drones in Canada. Fast delivery, tracking, and premium aerial tech.">
+<meta name="description" content="Buy high-performance drones in Canada. Fast shipping, tracked delivery, and beginner-friendly options.">
 
 <style>
 body {
@@ -21,6 +21,8 @@ nav {
   justify-content: space-between;
   padding: 20px;
   background: #0f172a;
+  position: sticky;
+  top: 0;
 }
 nav a {
   color: #38bdf8;
@@ -31,13 +33,24 @@ nav a {
 /* HERO */
 .hero {
   text-align: center;
-  padding: 80px 20px;
+  padding: 100px 20px;
 }
 .hero h1 {
-  font-size: 42px;
+  font-size: 48px;
 }
 .hero p {
   color: #94a3b8;
+  margin-bottom: 20px;
+}
+
+/* TRUST BAR */
+.trust {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 15px;
+  background: #0f172a;
+  font-size: 14px;
 }
 
 /* GRID */
@@ -53,20 +66,33 @@ nav a {
   padding: 20px;
   border-radius: 12px;
   transition: 0.3s;
+  position: relative;
 }
 .card:hover {
   transform: translateY(-5px);
 }
+
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #38bdf8;
+  color: #000;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 6px;
+}
+
 .card img {
   width: 100%;
   border-radius: 10px;
 }
+
 .price {
   color: #38bdf8;
   font-size: 20px;
 }
 
-/* BUTTON */
 .btn {
   display: inline-block;
   padding: 10px 15px;
@@ -77,12 +103,25 @@ nav a {
   text-decoration: none;
 }
 
+/* WHY SECTION */
+.why {
+  padding: 60px 20px;
+  text-align: center;
+}
+.why h2 {
+  margin-bottom: 20px;
+}
+.why p {
+  color: #94a3b8;
+}
+
 /* TRACKING */
 .tracking {
   text-align: center;
   padding: 60px 20px;
   background: #0f172a;
 }
+
 input {
   padding: 10px;
   border-radius: 5px;
@@ -94,53 +133,65 @@ input {
 
 <body>
 
-<!-- NAV -->
 <nav>
   <h2>🚁 DroneHub</h2>
   <div>
     <a href="#">Home</a>
     <a href="#shop">Shop</a>
-    <a href="#track">Track Order</a>
+    <a href="#track">Track</a>
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-  <h1>Premium Drones Delivered Fast</h1>
-  <p>Shop high-performance drones with real-time tracking</p>
-  <a href="#shop" class="btn">Browse Drones</a>
+  <h1>Capture Stunning Aerial Footage — Even as a Beginner</h1>
+  <p>Premium drones with fast Canadian shipping and real-time tracking</p>
+  <a href="#shop" class="btn">Shop Now</a>
 </section>
 
-<!-- PRODUCT GRID -->
+<div class="trust">
+  <span>🇨🇦 Ships from Canada</span>
+  <span>🚚 Tracked Delivery</span>
+  <span>🔒 Secure Checkout</span>
+  <span>💯 30-Day Guarantee</span>
+</div>
+
 <section id="shop" class="grid">
 
   <div class="card">
+    <div class="badge">🔥 Best Seller</div>
     <img src="https://images.unsplash.com/photo-1508612761958-e931c3a7e9b3" />
     <h3>Pro Aerial X</h3>
-    <p>4K camera • 30 min flight</p>
+    <p>Smooth 4K footage + ultra stable flight</p>
     <p class="price">$799</p>
     <a href="product.html?id=1" class="btn">View</a>
   </div>
 
   <div class="card">
+    <div class="badge">🎯 Beginner Pick</div>
     <img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f" />
     <h3>SkyDrone Mini</h3>
-    <p>Compact • Beginner friendly</p>
+    <p>Easy to fly — perfect first drone</p>
     <p class="price">$299</p>
     <a href="product.html?id=2" class="btn">View</a>
   </div>
 
   <div class="card">
+    <div class="badge">🚀 Pro Level</div>
     <img src="https://images.unsplash.com/photo-1508614999368-9260051292e5" />
     <h3>Drone Pro Max</h3>
-    <p>8K • Long-range • AI tracking</p>
+    <p>8K video + long-range + AI tracking</p>
     <p class="price">$1299</p>
     <a href="product.html?id=3" class="btn">View</a>
   </div>
 
 </section>
 
-<!-- TRACKING SECTION -->
+<section class="why">
+  <h2>Why DroneHub?</h2>
+  <p>No cheap knockoffs. Every drone is tested for performance, stability, and real-world use.</p>
+  <p>Fast Canadian shipping with tracking on every order.</p>
+</section>
+
 <section id="track" class="tracking">
   <h2>Track Your Drone</h2>
   <input type="text" id="tracking" placeholder="Enter tracking number">
@@ -148,7 +199,6 @@ input {
   <div id="result" style="margin-top:20px;"></div>
 </section>
 
-<!-- SUPABASE -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 
 <script>
