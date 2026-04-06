@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NorthSky Drones</title>
+<title>Northskydrones</title>
 
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,7 +30,12 @@ header p { font-size:0.9rem; color:#94a3b8; }
   padding:10px;
   font-size:0.9rem;
 }
-
+.hero {
+  height: 100vh;
+  background:
+    linear-gradient(rgba(2,6,23,0.8), rgba(2,6,23,0.9)),
+    url('/images/drone-hero.jpg') center/cover no-repeat;
+}
 /* BANNER */
 .banner img {
   width:100%;
@@ -153,20 +158,20 @@ const supabase = supabase.createClient(
 /* PRODUCT DATA (REAL STORE STRUCTURE) */
 const drones = [
   {
-    name: "SkyMaster X1",
-    image: "skymasterx1.jpg",
+    name: SkyMaster X1,
+    image: skymasterx1.jpg,
     price: "$899 CAD",
     desc: "4K Camera • 30min Flight • GPS Auto Return"
   },
   {
-    name: "AeroFlyer 3000",
-    image: "aeroflyer3000.jpg",
+    name: AeroFlyer 3000,
+    image: aeroflyer3000.jpg,
     price: "$699 CAD",
     desc: "HD Camera • Beginner Friendly • Foldable"
   },
   {
-    name: "CloudRider Pro",
-    image: "cloudriderpro.jpg",
+    name: CloudRider Pro,
+    image: cloudriderpro.jpg,
     price: "$1299 CAD",
     desc: "Obstacle Avoidance • Long Range • Pro Grade"
   }
