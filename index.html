@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NorthSky Drones</title>
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: Arial, sans-serif;
+  background:#0f172a;
+  color:#f8fafc;
+}
+
+/* HEADER */
+header {
+  background:#1e293b;
+  padding:1rem;
+  text-align:center;
+}
+
+header h1 { font-size:2rem; }
+header p { font-size:0.9rem; color:#94a3b8; }
+
+/* SALE BAR */
+.sale-bar {
+  text-align:center;
+  padding:10px;
+  background:#16a34a;
+  color:white;
+  font-weight:bold;
+}
+
+/* PRODUCTS */
+#drone-gallery {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:20px;
+  padding:20px;
+}
+
+.drone-card {
+  background:#1e293b;
+  border-radius:10px;
+  width:260px;
+  padding:15px;
+  text-align:center;
+  transition:0.2s;
+}
+
+.drone-card:hover {
+  transform:translateY(-5px);
+}
+
+.drone-card img {
+  width:100%;
+  border-radius:6px;
+  margin-bottom:10px;
+}
+
+.price {
+  color:#22c55e;
+  font-weight:bold;
+  margin:8px 0;
+}
+
+button {
+  background:#38bdf8;
+  border:none;
+  padding:10px;
+  border-radius:6px;
+  cursor:pointer;
+  width:100%;
+  font-weight:bold;
+}
+
+/* TRUST */
+.trust {
+  text-align:center;
+  padding:20px;
+}
+
+/* FOOTER */
+footer {
+  text-align:center;
+  padding:20px;
+  background:#1e293b;
+  margin-top:30px;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+  <h1>🚁 NorthSky Drones</h1>
+  <p>Premium Drones for Canada</p>
+</header>
+
+<!-- 🔥 SALE BAR -->
+<div class="sale-bar">
+🔥 SALE ENDS TONIGHT — FREE SHIPPING CANADA 🇨🇦
+</div>
+
+<!-- 🛍️ PRODUCTS -->
+<section>
+  <h2 style="text-align:center; margin-top:20px;">Top Drones</h2>
+  <div id="drone-gallery"></div>
+</section>
+
+<!-- 🔒 TRUST BADGES -->
+<div class="trust">
+  <p>🔒 Secure Checkout</p>
+  <p>📦 Tracked Shipping</p>
+  <p>💸 Cash on Delivery Available</p>
+  <p>🇨🇦 Ships from Canada</p>
+</div>
+
+<footer>
+  © 2026 NorthSky Drones
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const drones = [
+    {
+      name: "SkyMaster X1",
+      image: "images/skymasterx1.jpg",
+      price: 899,
+      oldPrice: 1199,
+      stock: 5,
+      desc: "4K Camera • 30min Flight • GPS Auto Return"
+    },
+    {
+      name: "AeroFlyer 3000",
+      image: "images/aeroflyer3000.jpg",
+      price: 699,
+      oldPrice: 999,
+      stock: 8,
+      desc: "HD Camera • Beginner Friendly • Foldable"
+    }
+  ];
+
+  const gallery = document.getElementById("drone-gallery");
+
+  drones.forEach((drone) => {
+    const viewers = Math.floor(Math.random() * 10) + 5;
+
+    const card = document.createElement("div");
+    card.className = "drone-card";
+
+    card.innerHTML = `
+      <img src="${drone.image}" onerror="this.src='https://via.placeholder.com/300?text=Drone'">
+
+      <h3>${drone.name}</h3>
+
+      <p style="font-size:0.85rem; color:#f87171;">
+        🔥 Only ${drone.stock} left in stock
+      </p>
+
+      <p style="font-size:0.8rem; color:#38bdf8;">
+        👀 ${viewers} people viewing this now
+      </p>
+
+      <p>${drone.desc}</p>
+
+      <p>
+        <span style="text-decoration:line-through; color:#94a3b8;">
+          $${drone.oldPrice}
+        </span>
+        <span class="price">$${drone.price} CAD</span>
+      </p>
+
+      <button onclick="buyNow('${drone.name}')">
+        🚀 Buy Now
+      </button>
+
+      <p style="font-size:0.75rem; margin-top:5px;">
+        ✔ Cash on Delivery Available
+      </p>
+    `;
+
+    gallery.appendChild(card);
+  });
+
+});
+
+/* 🚀 BUY BUTTON */
+function buyNow(name) {
+  localStorage.setItem("product", name);
+  window.location.href = "checkout.html";
+}
+</script>
+
+</body>
+</html>
