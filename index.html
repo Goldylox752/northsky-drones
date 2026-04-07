@@ -100,18 +100,15 @@ footer {
   <p>Premium Drones for Canada</p>
 </header>
 
-<!-- 🔥 SALE BAR -->
 <div class="sale-bar">
 🔥 SALE ENDS TONIGHT — FREE SHIPPING CANADA 🇨🇦
 </div>
 
-<!-- 🛍️ PRODUCTS -->
 <section>
   <h2 style="text-align:center; margin-top:20px;">Top Drones</h2>
   <div id="drone-gallery"></div>
 </section>
 
-<!-- 🔒 TRUST BADGES -->
 <div class="trust">
   <p>🔒 Secure Checkout</p>
   <p>📦 Tracked Shipping</p>
@@ -129,7 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const drones = [
     {
       name: "SkyMaster X1",
-      image: "images/skymasterx1.jpg",
+      image: "https://images.unsplash.com/photo-1508614589041-895b88991e3e",
       price: 899,
       oldPrice: 1199,
       stock: 5,
@@ -137,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     {
       name: "AeroFlyer 3000",
-      image: "images/aeroflyer3000.jpg",
+      image: "https://images.unsplash.com/photo-1473968512647-3e447244af8f",
       price: 699,
       oldPrice: 999,
       stock: 8,
@@ -154,24 +151,17 @@ document.addEventListener("DOMContentLoaded", function () {
     card.className = "drone-card";
 
     card.innerHTML = `
-      <img src="${drone.image}" onerror="this.src='https://via.placeholder.com/300?text=Drone'">
+      <img src="${drone.image}">
 
       <h3>${drone.name}</h3>
 
-      <p style="font-size:0.85rem; color:#f87171;">
-        🔥 Only ${drone.stock} left in stock
-      </p>
-
-      <p style="font-size:0.8rem; color:#38bdf8;">
-        👀 ${viewers} people viewing this now
-      </p>
+      <p style="color:#f87171;">🔥 Only ${drone.stock} left</p>
+      <p style="color:#38bdf8;">👀 ${viewers} people viewing</p>
 
       <p>${drone.desc}</p>
 
       <p>
-        <span style="text-decoration:line-through; color:#94a3b8;">
-          $${drone.oldPrice}
-        </span>
+        <span style="text-decoration:line-through;">$${drone.oldPrice}</span>
         <span class="price">$${drone.price} CAD</span>
       </p>
 
@@ -179,9 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
         🚀 Buy Now
       </button>
 
-      <p style="font-size:0.75rem; margin-top:5px;">
-        ✔ Cash on Delivery Available
-      </p>
+      <p style="font-size:0.75rem;">✔ Cash on Delivery Available</p>
     `;
 
     gallery.appendChild(card);
@@ -189,7 +177,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-/* 🚀 BUY BUTTON */
 function buyNow(name) {
   localStorage.setItem("product", name);
   window.location.href = "checkout.html";
