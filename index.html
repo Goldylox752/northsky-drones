@@ -34,7 +34,41 @@ height:220px;
 object-fit:cover;
 }
 
+/* VIDEO */
 iframe{width:100%;height:230px;border-radius:10px;margin-top:10px;}
+
+/* TIKTOK FEED */
+.tiktok-feed{
+height:80vh;
+overflow-y:scroll;
+scroll-snap-type:y mandatory;
+border-radius:14px;
+margin:20px;
+}
+.tiktok-video{
+height:80vh;
+position:relative;
+scroll-snap-align:start;
+overflow:hidden;
+border-radius:14px;
+margin-bottom:10px;
+}
+.tiktok-video video{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+.overlay{
+position:absolute;
+bottom:0;
+left:0;
+right:0;
+padding:15px;
+background:linear-gradient(to top,rgba(0,0,0,0.8),transparent);
+}
+.overlay button{
+margin-top:10px;
+}
 
 /* PRODUCTS */
 .products{
@@ -83,6 +117,13 @@ font-size:0.85rem;
 margin-top:4px;
 }
 
+/* FEATURED FULL WIDTH */
+.featured{
+grid-column:span 2;
+border:2px solid #22c55e;
+text-align:center;
+}
+
 /* STICKY */
 .sticky{
 position:fixed;
@@ -104,6 +145,7 @@ display:none;
 
 <div class="sale">🔥 SAVE $300 — FREE SHIPPING 🇨🇦</div>
 
+<!-- HERO -->
 <section class="hero">
 <h1>DJI-Level Drones Without the $2000 Price</h1>
 
@@ -117,128 +159,143 @@ display:none;
 <p class="secure">🔒 Secure Checkout • Stripe • Apple Pay</p>
 </section>
 
-<section class="hero">
-<h3>🎥 Real Drone Footage</h3>
-<iframe src="https://www.youtube.com/embed/1La4QzGeaaQ?rel=0" allowfullscreen></iframe>
+<!-- TIKTOK FEED -->
+<section>
+<h3 style="text-align:center;">🔥 Trending Now</h3>
+
+<div class="tiktok-feed">
+
+<div class="tiktok-video">
+<video muted loop playsinline>
+<source src="https://cdn.coverr.co/videos/coverr-flying-over-mountains-1570/1080p.mp4">
+</video>
+<div class="overlay">
+🔥 “This footage looks unreal…”
+<button onclick="buy('pro')">Shop Now</button>
+</div>
+</div>
+
+<div class="tiktok-video">
+<video muted loop playsinline>
+<source src="https://cdn.coverr.co/videos/coverr-drone-shot-over-ocean-5192/1080p.mp4">
+</video>
+<div class="overlay">
+😳 “Didn’t expect this quality”
+<button onclick="buy('max')">View Drone</button>
+</div>
+</div>
+
+</div>
 </section>
 
+<!-- PRODUCTS -->
 <section>
 <h3 style="text-align:center;">🚀 Shop Drones</h3>
 
 <div class="products">
 
-<!-- LITE -->
 <div class="product">
 <img src="https://images.pexels.com/photos/724921/pexels-photo-724921.jpeg">
 <h4>NorthSky Lite</h4>
-<p>Beginner • Stable</p>
 <strong>$599</strong>
 <div class="inventory" id="inv1">Only 18 left</div>
-<button onclick="buy('lite')">🔥 Buy Now</button>
-<p class="secure">🔒 Secure Checkout</p>
+<button onclick="buy('lite')">Buy Now</button>
 </div>
 
-<!-- PRO -->
 <div class="product">
 <img src="https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg">
-<h4>NorthSky Pro</h4>
-<p>4K • Best Seller</p>
+<h4>NorthSky Pro 🔥</h4>
 <strong>$899</strong>
 <div class="inventory" id="inv2">Only 12 left</div>
-<button onclick="buy('pro')">🚀 Best Seller</button>
-<p class="secure">🔒 Secure Checkout</p>
+<button onclick="buy('pro')">Best Seller</button>
 </div>
 
-<!-- MAX -->
 <div class="product">
 <img src="https://images.pexels.com/photos/336232/pexels-photo-336232.jpeg">
 <h4>NorthSky Max</h4>
-<p>Long Range • GPS</p>
 <strong>$1099</strong>
 <div class="inventory" id="inv3">Only 9 left</div>
 <button onclick="buy('max')">Buy Now</button>
-<p class="secure">🔒 Secure Checkout</p>
 </div>
 
-<!-- X -->
 <div class="product">
 <img src="https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg">
 <h4>NorthSky X</h4>
-<p>Sport Mode • Fast</p>
 <strong>$1299</strong>
 <div class="inventory" id="inv4">Only 6 left</div>
 <button onclick="buy('x')">Buy Now</button>
-<p class="secure">🔒 Secure Checkout</p>
 </div>
 
-<!-- EXTRA PRODUCTS -->
 <div class="product">
-<img src="https://images.pexels.com/photos/1087180/pexels-photo-1087180.jpeg">
 <h4>Skymaster X1 Pro Kit</h4>
-<p>Starter Kit</p>
 <strong>$199</strong>
 <button onclick="buy('kit')">Buy Now</button>
-<p class="secure">🔒 Secure Checkout</p>
 </div>
 
 <div class="product">
-<img src="https://images.pexels.com/photos/724921/pexels-photo-724921.jpeg">
 <h4>Aeroflyer 3000</h4>
-<p>Advanced Flight</p>
 <strong>$699</strong>
 <button onclick="buy('aero')">Buy Now</button>
-<p class="secure">🔒 Secure Checkout</p>
 </div>
 
-<div class="product">
-<img src="https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg">
-<h4>Sky Master X1</h4>
-<p>Pro Edition</p>
-<strong>$899</strong>
-<button onclick="buy('master')">Buy Now</button>
-<p class="secure">🔒 Secure Checkout</p>
+<!-- 🔥 FEATURED (FIXES GAP + BOOSTS SALES) -->
+<div class="product featured">
+<h4>🔥 Creator Bundle</h4>
+<p>Drone + Accessories • Save $400</p>
+<strong>$1299</strong>
+<button onclick="buy('pro')">🚀 Best Value</button>
+<p class="secure">🔒 Most Popular Choice</p>
 </div>
 
 </div>
 </section>
 
+<!-- STICKY CTA -->
 <div class="sticky" id="sticky">
 <button onclick="buy('pro')">🚀 Buy Now</button>
 </div>
 
 <script>
 
-/* ✅ STRIPE LINKS CONNECTED PROPERLY */
+/* STRIPE LINKS */
 const links = {
   lite:"https://buy.stripe.com/dRm5kw4qDbOYa7Z3YY2ZO0h",
   pro:"https://buy.stripe.com/9B6eV64qDcT20xpeDC2ZO0i",
   max:"https://buy.stripe.com/4gMdR2bT52eoa7Z9ji2ZO0g",
   x:"https://buy.stripe.com/00w9AM7CP6uE93Vanm2ZO0f",
   kit:"https://buy.stripe.com/28E00caP15qA7ZRfHG2ZO0b",
-  aero:"https://buy.stripe.com/bJe9AM3mzdX6gwn2UU2ZO0c",
-  master:"https://buy.stripe.com/9B6eV64qDcT20xpeDC2ZO0i"
+  aero:"https://buy.stripe.com/bJe9AM3mzdX6gwn2UU2ZO0c"
 };
 
 function buy(product){
-  console.log("Buying:", product);
   window.open(links[product], "_blank");
 }
 
+/* TIKTOK AUTOPLAY */
+const vids=document.querySelectorAll(".tiktok-video video");
+const obs=new IntersectionObserver(entries=>{
+entries.forEach(e=>{
+if(e.isIntersecting){e.target.play();}
+else{e.target.pause();}
+});
+},{threshold:0.7});
+vids.forEach(v=>obs.observe(v));
+
 /* SCARCITY */
 setInterval(()=>{
-  for(let i=1;i<=4;i++){
-    let el=document.getElementById("inv"+i);
-    if(!el) continue;
-    let num=parseInt(el.innerText.match(/\d+/)[0]);
-    if(num>3){el.innerText="Only "+(num-1)+" left";}
-  }
+for(let i=1;i<=4;i++){
+let el=document.getElementById("inv"+i);
+if(!el) continue;
+let num=parseInt(el.innerText.match(/\d+/)[0]);
+if(num>3){el.innerText="Only "+(num-1)+" left";}
+}
 },15000);
 
 /* STICKY CTA */
 window.addEventListener("scroll",()=>{
-  if(window.scrollY>400){
-    document.getElementById("sticky").style.display="block";
-  }
+if(window.scrollY>400){
+document.getElementById("sticky").style.display="block";
+}
 });
 </script>
 
