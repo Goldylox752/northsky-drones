@@ -29,9 +29,20 @@ header{
   font-size:13px;
 }
 
-.hero{padding:22px;text-align:center;}
-.hero h1{font-size:26px;margin-bottom:10px;}
-.hero p{color:#9ca3af;font-size:14px;}
+.hero{
+  padding:22px;
+  text-align:center;
+}
+
+.hero h1{
+  font-size:26px;
+  margin-bottom:10px;
+}
+
+.hero p{
+  color:#9ca3af;
+  font-size:14px;
+}
 
 button{
   background:linear-gradient(135deg,#22c55e,#16a34a);
@@ -78,6 +89,17 @@ button{
   background:linear-gradient(to top,rgba(0,0,0,0.95),transparent);
 }
 
+.badge{
+  position:absolute;
+  top:10px;
+  left:10px;
+  background:#22c55e;
+  font-size:11px;
+  padding:4px 8px;
+  border-radius:6px;
+  font-weight:bold;
+}
+
 .products{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -99,8 +121,17 @@ button{
   margin-bottom:6px;
 }
 
-.rating{font-size:12px;color:#facc15;margin-bottom:4px;}
-.proof{padding:15px;font-size:14px;color:#d1d5db;}
+.rating{
+  font-size:12px;
+  color:#facc15;
+  margin-bottom:4px;
+}
+
+.proof{
+  padding:15px;
+  font-size:14px;
+  color:#d1d5db;
+}
 
 .sticky{
   position:fixed;
@@ -129,8 +160,8 @@ button{
 <div class="sale">🔥 FREE SHIPPING • LIMITED STOCK</div>
 
 <section class="hero">
-<h1>4K Drone Footage Without Paying $2000+</h1>
-<p>Trusted by creators worldwide</p>
+<h1>NorthSky Pro 4K Drone</h1>
+<p>Capture cinematic footage without spending $2000+</p>
 
 <button onclick="buy('pro')">🔥 Get NorthSky Pro</button>
 
@@ -145,25 +176,26 @@ button{
 
 <!-- VIDEO -->
 <div class="card">
+<div class="badge">🔥 Trending</div>
 <video autoplay muted loop playsinline>
 <source src="https://cdn.coverr.co/videos/coverr-flying-over-mountains-1570/1080p.mp4">
 </video>
 
 <div class="overlay">
-<h3>NorthSky Pro 🔥</h3>
+<h3>Real 4K Aerial Footage</h3>
 <button onclick="buy('pro')">Buy Now – $899</button>
 </div>
 </div>
 
-<!-- ✅ GUARANTEED WORKING IMAGE -->
+<!-- MAIN PRODUCT IMAGE -->
 <div class="card">
 <img 
-src="https://images.unsplash.com/photo-1506947411487-a56738267384?auto=format&fit=crop&w=900&q=80"
+src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=1200&q=90"
 loading="eager"
-onerror="this.src='https://picsum.photos/900/600?1';">
+onerror="this.src='https://picsum.photos/900/600';">
 
 <div class="overlay">
-<h3>Professional 4K Drone Camera</h3>
+<h3>Precision Stabilized Camera</h3>
 <button onclick="buy('pro')">Upgrade Now</button>
 </div>
 </div>
@@ -175,7 +207,7 @@ onerror="this.src='https://picsum.photos/900/600?1';">
 <div class="product">
 <img 
 src="https://images.unsplash.com/photo-1527977966376-1c8408f9f108?auto=format&fit=crop&w=400&q=80"
-onerror="this.src='https://picsum.photos/400/300?2';">
+onerror="this.src='https://picsum.photos/400/300?1';">
 
 <div class="rating">⭐⭐⭐⭐⭐ (1,284)</div>
 <h4>Lite</h4>
@@ -186,7 +218,7 @@ onerror="this.src='https://picsum.photos/400/300?2';">
 <div class="product">
 <img 
 src="https://images.unsplash.com/photo-1508615070457-7baeba4003ab?auto=format&fit=crop&w=400&q=80"
-onerror="this.src='https://picsum.photos/400/300?3';">
+onerror="this.src='https://picsum.photos/400/300?2';">
 
 <div class="rating">⭐⭐⭐⭐⭐ (3,912)</div>
 <h4>Pro 🔥</h4>
