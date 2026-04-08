@@ -22,51 +22,89 @@ background:#0b1220;
 color:#fff;
 }
 
-header{text-align:center;padding:15px;background:#111827;}
+/* HEADER */
+header{text-align:center;padding:15px;background:#111827;border-bottom:1px solid #1f2937;}
 .sale{background:#22c55e;padding:10px;text-align:center;font-weight:bold;}
 
 .hero{text-align:center;padding:20px;}
 
 .gallery{display:flex;gap:10px;overflow-x:auto;}
-.gallery img{width:85%;border-radius:12px;}
+.gallery img{
+width:85%;
+border-radius:12px;
+height:220px;
+object-fit:cover;
+}
 
-iframe{width:100%;height:220px;border-radius:10px;}
+/* VIDEO */
+iframe{width:100%;height:230px;border-radius:10px;margin-top:10px;}
 
-.viral-feed{height:360px;overflow-y:auto;}
-.viral-video{height:360px;margin-bottom:10px;border-radius:12px;overflow:hidden;}
-.viral-video video{width:100%;height:100%;object-fit:cover;}
+/* VIRAL */
+.viral-feed{height:400px;overflow-y:auto;scroll-snap-type:y mandatory;}
+.viral-video{
+height:400px;
+margin-bottom:10px;
+border-radius:14px;
+overflow:hidden;
+scroll-snap-align:start;
+position:relative;
+}
+.viral-video video{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+.overlay{
+position:absolute;
+bottom:0;
+left:0;
+right:0;
+padding:10px;
+background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);
+font-size:14px;
+}
 
+/* PRODUCTS */
 .products{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:10px;
+gap:12px;
 padding:20px;
 }
 
 .product{
 background:#111827;
-padding:10px;
-border-radius:10px;
+padding:12px;
+border-radius:12px;
 }
 
 .product img{
 width:100%;
-height:120px;
+height:140px;
 object-fit:cover;
 border-radius:8px;
 }
 
+.product h4{margin-top:6px;}
+
 button{
-background:#22c55e;
+background:linear-gradient(135deg,#22c55e,#16a34a);
 border:none;
 padding:12px;
 width:100%;
-border-radius:8px;
+border-radius:10px;
 margin-top:8px;
 font-weight:bold;
 cursor:pointer;
 }
 
+.inventory{
+color:#f87171;
+font-size:0.85rem;
+margin-top:4px;
+}
+
+/* REVIEWS */
 .review{
 background:#111827;
 padding:10px;
@@ -74,21 +112,17 @@ border-radius:10px;
 margin:10px 20px;
 display:flex;
 gap:10px;
+align-items:center;
 }
 
 .review img{
-width:60px;
-height:60px;
+width:55px;
+height:55px;
 border-radius:8px;
 object-fit:cover;
 }
 
-.inventory{
-color:#f87171;
-font-size:0.9rem;
-margin-top:5px;
-}
-
+/* STICKY */
 .sticky{
 position:fixed;
 bottom:0;
@@ -109,45 +143,56 @@ display:none;
 
 <div class="sale">🔥 SAVE $300 — FREE SHIPPING 🇨🇦</div>
 
+<!-- HERO -->
 <section class="hero">
-<h1>DJI-Level Drones Without the Price</h1>
+<h1>DJI-Level Drones Without the $2000 Price</h1>
 
 <div class="gallery">
+<img src="https://images.pexels.com/photos/724921/pexels-photo-724921.jpeg">
 <img src="https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg">
 <img src="https://images.pexels.com/photos/336232/pexels-photo-336232.jpeg">
-<img src="https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg">
 </div>
 
-<button onclick="buy('main')">🚀 Shop Now</button>
+<button onclick="buy('pro')">🚀 Shop Best Seller</button>
 </section>
 
+<!-- REAL DRONE FOOTAGE -->
 <section class="hero">
 <h3>🎥 Real Drone Footage</h3>
-<iframe src="https://www.youtube.com/embed/7jN0K7z1C7A"></iframe>
+<iframe src="https://www.youtube.com/embed/1La4QzGeaaQ?rel=0" allowfullscreen></iframe>
 </section>
 
-<!-- 🔥 TIKTOK STYLE VIRAL -->
+<!-- VIRAL SECTION -->
 <section class="hero">
-<h3>🔥 Trending Now</h3>
+<h3>🔥 Trending Right Now</h3>
 
 <div class="viral-feed">
 
 <div class="viral-video">
-<video muted autoplay loop playsinline>
-<source src="https://cdn.coverr.co/videos/coverr-drone-flying-through-mountains-1566/1080p.mp4">
+<video muted loop playsinline>
+<source src="https://cdn.coverr.co/videos/coverr-flying-over-mountains-1570/1080p.mp4">
 </video>
+<div class="overlay">“This footage looks unreal 😳”</div>
 </div>
 
 <div class="viral-video">
-<video muted autoplay loop playsinline>
-<source src="https://cdn.coverr.co/videos/coverr-drone-shot-over-water-5191/1080p.mp4">
+<video muted loop playsinline>
+<source src="https://cdn.coverr.co/videos/coverr-drone-shot-over-ocean-5192/1080p.mp4">
 </video>
+<div class="overlay">“Didn’t expect this quality…”</div>
+</div>
+
+<div class="viral-video">
+<video muted loop playsinline>
+<source src="https://cdn.coverr.co/videos/coverr-aerial-view-of-a-lake-1573/1080p.mp4">
+</video>
+<div class="overlay">“First flight and got this 🔥”</div>
 </div>
 
 </div>
 </section>
 
-<!-- 🚀 PRODUCTS -->
+<!-- PRODUCTS -->
 <section>
 <h3 style="text-align:center;">🚀 Choose Your Drone</h3>
 
@@ -156,9 +201,9 @@ display:none;
 <div class="product">
 <img src="https://images.pexels.com/photos/724921/pexels-photo-724921.jpeg">
 <h4>NorthSky Lite</h4>
-<p>Beginner • Stable Flight</p>
+<p>Beginner • Stable</p>
 <strong>$599</strong>
-<div class="inventory" id="inv1">Only 17 left</div>
+<div class="inventory" id="inv1">Only 18 left</div>
 <button onclick="buy('lite')">Buy</button>
 </div>
 
@@ -201,7 +246,7 @@ display:none;
 </div>
 </section>
 
-<!-- ⭐ REVIEWS -->
+<!-- REVIEWS -->
 <section>
 <h3 style="text-align:center;">⭐ Real Customers</h3>
 
@@ -217,33 +262,41 @@ display:none;
 
 </section>
 
+<!-- STICKY CTA -->
 <div class="sticky" id="sticky">
-<button onclick="buy('sticky')">🚀 Buy Now</button>
+<button onclick="buy('pro')">🚀 Buy Now</button>
 </div>
 
 <script>
+/* STRIPE LINKS */
 const links = {
-lite:"https://buy.stripe.com/test_lite",
-pro:"https://buy.stripe.com/test_pro",
-max:"https://buy.stripe.com/test_max",
-x:"https://buy.stripe.com/test_x",
-ultra:"https://buy.stripe.com/test_ultra",
-main:"https://buy.stripe.com/test_pro",
-sticky:"https://buy.stripe.com/test_pro"
+lite:"https://buy.stripe.com/YOUR_LITE",
+pro:"https://buy.stripe.com/YOUR_PRO",
+max:"https://buy.stripe.com/YOUR_MAX",
+x:"https://buy.stripe.com/YOUR_X",
+ultra:"https://buy.stripe.com/YOUR_ULTRA"
 };
 
 function buy(product){
 window.open(links[product],"_blank");
 }
 
-/* SCARCITY FAKE DROP */
+/* VIRAL AUTOPLAY */
+const vids=document.querySelectorAll(".viral-video video");
+const obs=new IntersectionObserver((entries)=>{
+entries.forEach(e=>{
+if(e.isIntersecting){e.target.play();}
+else{e.target.pause();}
+});
+},{threshold:0.6});
+vids.forEach(v=>obs.observe(v));
+
+/* SCARCITY */
 setInterval(()=>{
 for(let i=1;i<=5;i++){
 let el=document.getElementById("inv"+i);
 let num=parseInt(el.innerText.match(/\d+/)[0]);
-if(num>3){
-el.innerText="Only "+(num-1)+" left";
-}
+if(num>3){el.innerText="Only "+(num-1)+" left";}
 }
 },15000);
 
