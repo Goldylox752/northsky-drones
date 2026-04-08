@@ -32,6 +32,7 @@ font-weight:bold;
 /* HERO */
 .hero{text-align:center;padding:20px;}
 .hero h1{font-size:22px;margin-bottom:10px;}
+.hero p{color:#9ca3af;font-size:14px;}
 
 button{
 background:linear-gradient(135deg,#22c55e,#16a34a);
@@ -55,12 +56,12 @@ color:#9ca3af;
 
 /* TIKTOK FEED */
 .tiktok-feed{
-height:80vh;
+height:85vh;
 overflow-y:scroll;
 scroll-snap-type:y mandatory;
 }
 .card{
-height:80vh;
+height:85vh;
 scroll-snap-align:start;
 position:relative;
 }
@@ -70,20 +71,19 @@ height:100%;
 object-fit:cover;
 }
 
-/* OVERLAY */
 .overlay{
 position:absolute;
 bottom:0;
 width:100%;
 padding:15px;
-background:linear-gradient(to top,rgba(0,0,0,0.85),transparent);
+background:linear-gradient(to top,rgba(0,0,0,0.9),transparent);
 }
-.overlay h3{font-size:16px;}
-.overlay p{font-size:13px;color:#ccc;}
 
-/* BUY FLOAT */
-.buy{
-margin-top:10px;
+/* CTA BLOCK */
+.cta-mid{
+padding:20px;
+text-align:center;
+background:#111827;
 }
 
 /* PRODUCTS */
@@ -108,6 +108,13 @@ font-size:12px;
 grid-column:span 2;
 border:2px solid #22c55e;
 text-align:center;
+}
+
+/* REVIEWS */
+.reviews{
+padding:20px;
+font-size:14px;
+color:#d1d5db;
 }
 
 /* STICKY */
@@ -146,7 +153,7 @@ display:none;
 <!-- HERO -->
 <section class="hero">
 <h1>4K Drone Footage Without Paying $2000+</h1>
-<p style="color:#9ca3af;">Built for creators • Easy to fly • Cinematic results</p>
+<p>High-performance drones built for creators</p>
 
 <button onclick="buy('pro')">🔥 Get NorthSky Pro Now</button>
 
@@ -157,15 +164,15 @@ display:none;
 </div>
 </section>
 
-<!-- TIKTOK FEED (SELLING VERSION) -->
+<!-- TIKTOK FEED -->
 <section class="tiktok-feed">
 
 <div class="card">
 <video muted loop playsinline src="https://cdn.coverr.co/videos/coverr-flying-over-mountains-1570/1080p.mp4"></video>
 <div class="overlay">
 <h3>NorthSky Pro 🔥</h3>
-<p>“Didn’t expect this quality…”</p>
-<button class="buy" onclick="buy('pro')">Buy Now – $899</button>
+<p>“This footage looks unreal…”</p>
+<button onclick="buy('pro')">Buy Now – $899</button>
 </div>
 </div>
 
@@ -174,7 +181,7 @@ display:none;
 <div class="overlay">
 <h3>Long Range + GPS</h3>
 <p>Perfect cinematic shots</p>
-<button class="buy" onclick="buy('max')">View Max – $1099</button>
+<button onclick="buy('max')">View Max</button>
 </div>
 </div>
 
@@ -183,11 +190,18 @@ display:none;
 <div class="overlay">
 <h3>Beginner Friendly</h3>
 <p>“First flight and got this…”</p>
-<button class="buy" onclick="buy('lite')">Start – $599</button>
+<button onclick="buy('lite')">Start Now</button>
 </div>
 </div>
 
 </section>
+
+<!-- MID CTA -->
+<div class="cta-mid">
+<h3>🔥 Going Viral Right Now</h3>
+<p>Thousands are upgrading their content with NorthSky</p>
+<button onclick="buy('pro')">Get Yours Before It Sells Out</button>
+</div>
 
 <!-- PRODUCTS -->
 <section>
@@ -221,18 +235,6 @@ display:none;
 <button onclick="buy('x')">Buy Now</button>
 </div>
 
-<div class="product">
-<h4>Starter Kit</h4>
-<strong>$199</strong>
-<button onclick="buy('kit')">Add On</button>
-</div>
-
-<div class="product">
-<h4>Aeroflyer 3000</h4>
-<strong>$699</strong>
-<button onclick="buy('aero')">Buy Now</button>
-</div>
-
 <div class="product featured">
 <h4>🔥 Creator Bundle</h4>
 <p>Drone + Accessories • Save $400</p>
@@ -241,6 +243,14 @@ display:none;
 </div>
 
 </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews">
+<h3>⭐ Real Customers</h3>
+<p>"Better than expected for the price"</p>
+<p>"Shoots like a $2K drone"</p>
+<p>"Super easy to fly"</p>
 </section>
 
 <!-- STICKY -->
@@ -253,14 +263,11 @@ display:none;
 
 <script>
 
-/* STRIPE */
 const links={
 lite:"https://buy.stripe.com/dRm5kw4qDbOYa7Z3YY2ZO0h",
 pro:"https://buy.stripe.com/9B6eV64qDcT20xpeDC2ZO0i",
 max:"https://buy.stripe.com/4gMdR2bT52eoa7Z9ji2ZO0g",
-x:"https://buy.stripe.com/00w9AM7CP6uE93Vanm2ZO0f",
-kit:"https://buy.stripe.com/28E00caP15qA7ZRfHG2ZO0b",
-aero:"https://buy.stripe.com/bJe9AM3mzdX6gwn2UU2ZO0c"
+x:"https://buy.stripe.com/00w9AM7CP6uE93Vanm2ZO0f"
 };
 
 function buy(p){
@@ -274,13 +281,13 @@ e.forEach(x=>x.isIntersecting?v.play():v.pause());
 },{threshold:0.7}).observe(v);
 });
 
-/* SMART SCARCITY */
+/* SCARCITY */
 setInterval(()=>{
 for(let i=1;i<=4;i++){
 let el=document.getElementById("inv"+i);
 if(!el) continue;
 let num=parseInt(el.innerText.match(/\d+/)[0]);
-if(num>3 && Math.random()>0.4){
+if(num>3 && Math.random()>0.5){
 el.innerText="Only "+(num-1)+" left";
 }
 }
@@ -292,19 +299,12 @@ if(window.scrollY>300)
 document.getElementById("sticky").style.display="block";
 });
 
-/* POPUP VARIATIONS */
-const msgs=[
-"Someone just bought a NorthSky Pro",
-"New order placed in Canada 🇨🇦",
-"Customer just grabbed the Pro 🔥"
-];
-
+/* POPUP */
 setInterval(()=>{
 const popup=document.getElementById("popup");
-popup.innerText=msgs[Math.floor(Math.random()*msgs.length)];
 popup.style.display="block";
 setTimeout(()=>popup.style.display="none",3000);
-},7000);
+},8000);
 
 </script>
 
