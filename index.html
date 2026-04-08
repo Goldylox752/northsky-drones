@@ -14,6 +14,7 @@ body {
   color:#f8fafc;
 }
 
+/* HEADER */
 header {
   background:#1e293b;
   padding:1rem;
@@ -36,6 +37,7 @@ header img {
   color:#94a3b8;
 }
 
+/* SALE BAR */
 .sale-bar {
   text-align:center;
   padding:10px;
@@ -44,6 +46,7 @@ header img {
   font-weight:bold;
 }
 
+/* HERO */
 .hero {
   text-align:center;
   padding:30px;
@@ -69,6 +72,7 @@ header img {
   color:#22c55e;
 }
 
+/* BUTTON */
 button {
   background:#22c55e;
   border:none;
@@ -80,6 +84,13 @@ button {
   font-weight:bold;
 }
 
+/* 🔥 HOVER EFFECT */
+button:hover {
+  transform: scale(1.05);
+  transition: 0.2s;
+}
+
+/* PRODUCTS */
 #drone-gallery {
   display:flex;
   flex-wrap:wrap;
@@ -106,21 +117,27 @@ button {
   font-weight:bold;
 }
 
+/* SECTIONS */
 .reviews, .trust {
   text-align:center;
   padding:20px;
 }
 
+/* 🔥 STICKY BAR (UPGRADED) */
 .sticky-buy {
   position:fixed;
   bottom:0;
   width:100%;
-  background:#0f172a;
+  background:rgba(15,23,42,0.9);
   padding:10px;
   text-align:center;
   border-top:1px solid #333;
+  backdrop-filter: blur(10px);
+  opacity:0;
+  transition:0.3s;
 }
 
+/* FOOTER */
 footer {
   text-align:center;
   padding:20px;
@@ -215,6 +232,7 @@ FREE SHIPPING ACROSS CANADA 🇨🇦
   © 2026 NorthSky Drones
 </footer>
 
+<!-- STICKY BUY -->
 <div class="sticky-buy">
   <button onclick="buyNow('SkyMaster X1')">
     Buy Now — $899 CAD
@@ -228,7 +246,12 @@ const checkoutLinks = {
 };
 
 function buyNow(name) {
-  window.location.href = checkoutLinks[name];
+  const url = checkoutLinks[name];
+  if (url) {
+    window.location.href = url;
+  } else {
+    alert("Product not available");
+  }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -239,7 +262,6 @@ document.addEventListener("DOMContentLoaded", function () {
       image: "https://images.unsplash.com/photo-1473968512647-3e447244af8f",
       price: 699,
       oldPrice: 999,
-      stock: 8,
       desc: "HD Camera • Beginner Friendly"
     }
   ];
@@ -262,6 +284,17 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
 
     gallery.appendChild(card);
+  });
+
+  /* 🔥 SHOW STICKY ON SCROLL */
+  const sticky = document.querySelector(".sticky-buy");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 400) {
+      sticky.style.opacity = "1";
+    } else {
+      sticky.style.opacity = "0";
+    }
   });
 
 });
