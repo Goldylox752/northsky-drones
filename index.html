@@ -84,10 +84,16 @@ button:hover { transform:scale(1.05); }
   padding:10px;
   text-align:center;
   transform:translateY(100%);
+  opacity:0;
   transition:0.3s;
+  z-index:999;
   box-shadow:0 -5px 20px rgba(0,0,0,0.5);
 }
-.sticky-buy.show { transform:translateY(0); }
+
+.sticky-buy.show {
+  transform:translateY(0);
+  opacity:1;
+}
 
 /* POPUP */
 .popup {
@@ -183,81 +189,72 @@ function buyNow(name){
 window.location.href = checkoutLinks[name];
 }
 
-/* COUNTDOWN (LOOP RESET) */
+/* COUNTDOWN */
 let time = 900;
 setInterval(()=>{
 if(time <= 0) time = 900;
 let m=Math.floor(time/60);
 let s=time%60;
 document.getElementById("timer").innerText =
-"⏳ Sale ends in "+m+":"+ (s<10?"0"+s:s);
+"⏳ Sale ends in "+m+":"+(s<10?"0"+s:s);
 time--;
 },1000);
 
-/* STOCK (DECAY EFFECT) */
+/* STOCK */
 let stock = Math.floor(Math.random()*5)+5;
-document.getElementById("stock").innerText =
-"⚠️ Only "+stock+" left in stock";
+const stockEl = document.getElementById("stock");
+stockEl.innerText = "⚠️ Only "+stock+" left in stock";
 
 setInterval(()=>{
 if(stock > 2){
 stock--;
-document.getElementById("stock").innerText =
-"⚠️ Only "+stock+" left in stock";
+stockEl.innerText = "⚠️ Only "+stock+" left in stock";
 }
 },15000);
 
 /* PRODUCTS */
-const drones=[{
-name:"AeroFlyer 3000",
-image:"https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=800&q=80",
-price:699,
-oldPrice:999
-}];
-
 const gallery=document.getElementById("drone-gallery");
-drones.forEach(d=>{
-gallery.innerHTML+=`
+gallery.innerHTML = `
 <div class="drone-card">
-<img src="${d.image}">
-<h3>${d.name}</h3>
-<p><s>$${d.oldPrice}</s><br>$${d.price}</p>
+<img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=800&q=80">
+<h3>AeroFlyer 3000</h3>
+<p><s>$999</s><br>$699</p>
 <button onclick="buyNow('SkyMaster X1')">Buy Now</button>
 </div>`;
-});
 
-/* STICKY (PERFECT FIX) */
+/* 🔥 STICKY — FINAL FIX */
 const sticky=document.getElementById("sticky");
 const trigger=document.getElementById("mainBuyBtn");
 
-function toggleSticky(){
-const rect = trigger.getBoundingClientRect();
-
-if(rect.bottom < 0){
-sticky.classList.add("show");
-}else{
+const observer = new IntersectionObserver(
+(entries)=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
 sticky.classList.remove("show");
+}else{
+sticky.classList.add("show");
 }
-}
+});
+},
+{ threshold:0.4 }
+);
 
-window.addEventListener("scroll", toggleSticky);
-window.addEventListener("load", toggleSticky);
+observer.observe(trigger);
 
-/* POPUP (SMOOTH + NON-SPAMMY) */
+/* POPUP */
 setInterval(()=>{
 const names=["Mike","Sarah","Chris","Alex"];
 const cities=["Toronto","Calgary","Vancouver","Edmonton"];
 
 const p=document.createElement("div");
 p.className="popup";
-
 p.innerHTML="🛒 "+names[Math.floor(Math.random()*4)]+" from "+
 cities[Math.floor(Math.random()*4)]+" bought one";
 
 document.body.appendChild(p);
 
 setTimeout(()=>{p.style.opacity="1"; p.style.transform="translateY(0)";},50);
-setTimeout(()=>{p.style.opacity="0"; p.style.transform="translateY(10px)";},3500);
+setTimeout(()=>{p.style.opacity="0";},3500);
 setTimeout(()=>p.remove(),4000);
 
 },12000);
