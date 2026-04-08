@@ -12,6 +12,7 @@ body {
   font-family: Arial, sans-serif;
   background:#0f172a;
   color:#f8fafc;
+  padding-bottom:80px; /* FIX overlap */
 }
 
 /* HEADER */
@@ -49,11 +50,11 @@ header img {
 /* HERO */
 .hero {
   text-align:center;
-  padding:30px;
+  padding:30px 20px;
 }
 
 .hero img {
-  width:90%;
+  width:100%;
   max-width:400px;
   border-radius:10px;
   margin:15px 0;
@@ -67,7 +68,7 @@ header img {
 }
 
 .price-big {
-  font-size:1.8rem;
+  font-size:2rem;
   font-weight:bold;
   color:#22c55e;
 }
@@ -80,7 +81,7 @@ button {
   border-radius:8px;
   cursor:pointer;
   width:100%;
-  max-width:300px;
+  max-width:320px;
   font-weight:bold;
 }
 
@@ -89,7 +90,7 @@ button:hover {
   transition: 0.2s;
 }
 
-/* TRUST BADGES */
+/* BADGES */
 .badges {
   display:flex;
   justify-content:center;
@@ -114,6 +115,11 @@ button:hover {
   width:260px;
   padding:15px;
   text-align:center;
+  transition:0.2s;
+}
+
+.drone-card:hover {
+  transform: translateY(-5px);
 }
 
 .drone-card img {
@@ -129,7 +135,7 @@ button:hover {
 /* SECTIONS */
 .reviews, .trust, .faq {
   text-align:center;
-  padding:25px;
+  padding:25px 20px;
 }
 
 /* FAQ */
@@ -150,6 +156,24 @@ button:hover {
   backdrop-filter: blur(10px);
   opacity:0;
   transition:0.3s;
+  z-index:999;
+}
+
+/* POPUP */
+.popup {
+  position:fixed;
+  bottom:90px;
+  left:20px;
+  background:#1e293b;
+  padding:10px;
+  border-radius:6px;
+  font-size:0.8rem;
+  animation:fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from {opacity:0; transform:translateY(10px);}
+  to {opacity:1;}
 }
 
 /* FOOTER */
@@ -180,7 +204,7 @@ footer {
 
   <h2>Capture Cinematic Aerial Footage — Effortlessly</h2>
 
-  <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e">
+  <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=800&q=80">
 
   <p style="color:#cbd5f5;">
     Professional drone performance without the learning curve.
@@ -213,16 +237,9 @@ footer {
 
 </section>
 
-<!-- SOCIAL PROOF -->
+<!-- REVIEWS -->
 <section class="reviews">
-  <p>
-  ⭐⭐⭐⭐⭐ “I bought this for camping trips and it’s been amazing. Battery lasts longer than expected and footage is super stable.”  
-  – Daniel R., Edmonton
-  </p>
-
-  <p style="margin-top:10px;">
-  Perfect for travel, real estate, and beginners wanting pro-level footage.
-  </p>
+  ⭐⭐⭐⭐⭐ “Battery lasts longer than expected and footage is super stable.” – Daniel R., Edmonton
 </section>
 
 <!-- INCLUDED -->
@@ -247,14 +264,14 @@ footer {
 
 <!-- FAQ -->
 <section class="faq">
-  <h3>❓ Frequently Asked Questions</h3>
-  <p><b>How long does shipping take?</b><br>3–7 business days across Canada.</p>
-  <p><b>Is it beginner friendly?</b><br>Yes — designed for first-time users.</p>
-  <p><b>What if I don’t like it?</b><br>30-day money back guarantee.</p>
+  <h3>❓ FAQ</h3>
+  <p><b>Shipping?</b><br>3–7 business days.</p>
+  <p><b>Beginner friendly?</b><br>Yes.</p>
+  <p><b>Returns?</b><br>30-day guarantee.</p>
 </section>
 
 <footer>
-  © 2026 NorthSky Drones • All rights reserved
+  © 2026 NorthSky Drones
 </footer>
 
 <!-- STICKY BUY -->
@@ -275,13 +292,13 @@ function buyNow(name) {
   if (url) window.location.href = url;
 }
 
-/* LOAD PRODUCTS */
+/* PRODUCTS */
 document.addEventListener("DOMContentLoaded", function () {
 
   const drones = [
     {
       name: "AeroFlyer 3000",
-      image: "https://images.unsplash.com/photo-1473968512647-3e447244af8f",
+      image: "https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=800&q=80",
       price: 699,
       oldPrice: 999,
       desc: "HD Camera • Beginner Friendly"
@@ -308,12 +325,31 @@ document.addEventListener("DOMContentLoaded", function () {
     gallery.appendChild(card);
   });
 
-  /* STICKY SHOW ON SCROLL */
+  /* STICKY SCROLL */
   const sticky = document.querySelector(".sticky-buy");
-
   window.addEventListener("scroll", () => {
     sticky.style.opacity = window.scrollY > 400 ? "1" : "0";
   });
+
+  /* LIVE SALES POPUP */
+  setInterval(() => {
+    const names = ["Mike", "Sarah", "Chris", "Alex"];
+    const cities = ["Toronto", "Calgary", "Vancouver", "Edmonton"];
+
+    const popup = document.createElement("div");
+    popup.className = "popup";
+
+    popup.innerHTML =
+      "🔥 " +
+      names[Math.floor(Math.random()*names.length)] +
+      " from " +
+      cities[Math.floor(Math.random()*cities.length)] +
+      " just ordered";
+
+    document.body.appendChild(popup);
+    setTimeout(() => popup.remove(), 4000);
+
+  }, 9000);
 
 });
 </script>
