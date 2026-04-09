@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NorthSky | SkyMax X1 Drone</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:-apple-system,BlinkMacSystemFont,Arial;
+  background:#0b1220;
+  color:#fff;
+}
+
+.container{max-width:520px;margin:0 auto;}
+
+header{
+  text-align:center;
+  padding:20px;
+  background:#0f172a;
+}
+header p{font-size:12px;color:#9ca3af;}
+
+.banner{
+  background:#22c55e;
+  text-align:center;
+  padding:10px;
+  font-size:13px;
+  font-weight:600;
+}
+
+/* HERO */
+.hero-img img{
+  width:100%;
+  height:260px;
+  object-fit:cover;
+}
+
+.hero{
+  padding:20px;
+  text-align:center;
+}
+
+.hero h1{
+  font-size:28px;
+  margin-bottom:10px;
+}
+
+.hero p{
+  font-size:14px;
+  color:#9ca3af;
+}
+
+/* TRUST */
+.trust{
+  display:flex;
+  justify-content:space-around;
+  font-size:11px;
+  padding:12px;
+  color:#9ca3af;
+}
+
+/* PRODUCT BOX */
+.box{
+  margin:15px;
+  background:#111827;
+  border-radius:16px;
+  padding:20px;
+  text-align:center;
+}
+
+.price{
+  font-size:26px;
+  font-weight:bold;
+}
+
+.old{
+  text-decoration:line-through;
+  font-size:12px;
+  color:#9ca3af;
+}
+
+button{
+  background:#22c55e;
+  border:none;
+  padding:16px;
+  width:100%;
+  border-radius:12px;
+  font-weight:700;
+  margin-top:12px;
+  font-size:16px;
+}
+
+/* SECTIONS */
+.section{
+  padding:20px;
+}
+
+.card{
+  background:#111827;
+  padding:14px;
+  border-radius:12px;
+  margin-bottom:10px;
+  font-size:14px;
+}
+
+h3{margin-bottom:12px;}
+
+.sticky{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  max-width:520px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#000;
+  padding:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+<h2>NORTHSKY</h2>
+<p>Premium Drone Systems • Canada</p>
+</header>
+
+<div class="banner">🚚 Free Shipping • 2–5 Day Delivery</div>
+
+<!-- HERO -->
+<div class="hero-img">
+<img src="https://images.unsplash.com/photo-1506947411487-a56738267384?auto=format&fit=crop&w=1200&q=80">
+</div>
+
+<div class="hero">
+<h1>Shoot Cinematic Drone Footage — Instantly</h1>
+<p>No experience needed. Just fly and capture smooth 4K video.</p>
+</div>
+
+<div class="trust">
+<span>🔒 Secure</span>
+<span>🚚 Fast Shipping</span>
+<span>📦 30-Day Guarantee</span>
+</div>
+
+<!-- PRODUCT -->
+<div class="box">
+
+<h2>SkyMax X1</h2>
+
+<p class="old">$1299</p>
+<div class="price">$899</div>
+
+<p style="font-size:13px;color:#9ca3af;margin-top:8px;">
+4K Camera • 25min Flight • GPS Auto Return • Beginner Friendly
+</p>
+
+<button onclick="go('master')">🔥 Get Yours Now</button>
+
+</div>
+
+<!-- BENEFITS -->
+<div class="section">
+<h3>Why People Choose SkyMax</h3>
+
+<div class="card">✔ Easy to fly — perfect for beginners</div>
+<div class="card">✔ Smooth cinematic 4K footage</div>
+<div class="card">✔ GPS return — never lose your drone</div>
+<div class="card">✔ Ready to fly in minutes</div>
+
+</div>
+
+<!-- INCLUDED -->
+<div class="section">
+<h3>What’s Included</h3>
+
+<div class="card">✔ SkyMax X1 Drone</div>
+<div class="card">✔ Controller</div>
+<div class="card">✔ Battery + Charger</div>
+<div class="card">✔ Quick Start Setup</div>
+
+</div>
+
+<!-- REVIEWS -->
+<div class="section">
+<h3>Customer Reviews</h3>
+
+<div class="card">“Didn’t expect this quality — insane footage.”</div>
+<div class="card">“Super easy to fly. First drone ever.”</div>
+<div class="card">“Fast shipping in Alberta.”</div>
+
+</div>
+
+</div>
+
+<div class="sticky">
+<button onclick="go('master')">🚀 Get SkyMax X1</button>
+</div>
+
+<script>
+const links={
+master:"https://buy.stripe.com/9B6eV64qDcT20xpeDC2ZO0i"
+};
+
+function go(p){
+window.location.href=links[p];
+}
+</script>
+
+</body>
+</html>
