@@ -44,6 +44,7 @@ header p{font-size:12px;color:#9ca3af;}
   width:100%;
   height:240px;
   object-fit:cover;
+  background:#000;
 }
 
 /* HERO */
@@ -184,19 +185,25 @@ button{
 <p>Canadian Drone Store • Alberta Based</p>
 </header>
 
-<div class="banner">🚚 Free Shipping Across Canada</div>
+<div class="banner">🚚 Free Shipping Across Canada • Limited Stock</div>
 
-<!-- 🎥 HERO VIDEO -->
+<!-- 🎥 HERO VIDEO (FIXED) -->
 <div class="hero-video">
-<video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=1200&q=80">
-<source src="https://cdn.coverr.co/videos/coverr-drone-flying-over-mountains-5176/1080p.mp4" type="video/mp4">
+<video autoplay muted loop playsinline controls preload="metadata"
+poster="https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=1200&q=80">
+
+<source src="https://cdn.coverr.co/videos/coverr-aerial-view-of-a-river-1574/1080p.mp4" type="video/mp4">
+
+<!-- fallback image -->
+<img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=1200&q=80" style="width:100%;height:240px;object-fit:cover;">
+
 </video>
 </div>
 
 <section class="hero">
 <h1>Capture Cinematic Drone Footage — Without the Learning Curve</h1>
-<p>Simple, reliable drones built for beginners and creators.</p>
-<p class="local">🇨🇦 Based in Leduc, Alberta • Ships Across Canada</p>
+<p>Fly in minutes. Shoot smooth 4K video with zero experience.</p>
+<p class="local">🇨🇦 Ships from Alberta • 2–5 Day Delivery</p>
 </section>
 
 <div class="trust">
@@ -205,7 +212,7 @@ button{
 <span>📦 30-Day Guarantee</span>
 </div>
 
-<!-- 🔥 MAIN PRODUCT: SKYMAX X1 -->
+<!-- 🔥 MAIN PRODUCT -->
 <div class="box">
 
 <img 
@@ -216,7 +223,7 @@ style="width:100%;border-radius:12px;margin-bottom:12px;"
 <h2>SkyMax X1</h2>
 
 <p style="font-size:13px;color:#9ca3af;">
-Our most popular drone. Built for smooth, stable 4K footage — even if you’ve never flown before.
+Our most popular drone in Canada. Built for stable 4K footage — even for beginners.
 </p>
 
 <p style="text-decoration:line-through;color:#9ca3af;font-size:12px;">
@@ -226,7 +233,7 @@ $1299 retail
 <div class="price">$899</div>
 
 <div class="specs">
-4K Camera • 25min Flight • GPS Return • Beginner Friendly
+4K Camera • 25min Flight • GPS Return • 3km Range
 </div>
 
 <button onclick="go('master')">🔥 Get SkyMax X1</button>
@@ -235,24 +242,18 @@ $1299 retail
 🇨🇦 Ships from Canada • 30-day guarantee
 </p>
 
-<p style="font-size:12px;color:#22c55e;margin-top:6px;">
-✔ Real footage • ✔ Canadian shipping • ✔ Beginner approved
-</p>
-
 </div>
 
-<!-- 🔥 WHY THIS PRODUCT -->
+<!-- WHY -->
 <section class="section">
 <h3>Why SkyMax X1</h3>
-
-<div class="card">✔ Perfect for beginners — no learning curve</div>
-<div class="card">✔ Smooth cinematic 4K footage</div>
-<div class="card">✔ Stable GPS flight & auto return</div>
+<div class="card">✔ Beginner-friendly controls</div>
+<div class="card">✔ Smooth stabilized 4K footage</div>
+<div class="card">✔ GPS auto-return safety</div>
 <div class="card">✔ Ready to fly out of the box</div>
-
 </section>
 
-<!-- OTHER PRODUCTS -->
+<!-- PRODUCTS -->
 <section class="section">
 <h3>Other Options</h3>
 </section>
@@ -264,7 +265,6 @@ $1299 retail
 <img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=1200&q=80">
 <h4>NorthSky Starter</h4>
 <div class="price">$599</div>
-<div class="specs">4K • 20min • Beginner Friendly</div>
 <button onclick="go('lite')">Buy</button>
 </div>
 
@@ -273,13 +273,12 @@ $1299 retail
 <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=1200&q=80">
 <h4>NorthSky Pro 4K</h4>
 <div class="price">$1299</div>
-<div class="specs">4K HDR • 28min • Long Range</div>
 <button onclick="go('x')">Buy</button>
 </div>
 
 </section>
 
-<!-- 🎥 REAL FOOTAGE -->
+<!-- FOOTAGE -->
 <section class="section">
 <h3>Real Footage</h3>
 
@@ -288,18 +287,10 @@ $1299 retail
 <source src="https://cdn.coverr.co/videos/coverr-aerial-view-of-a-river-1574/1080p.mp4" type="video/mp4">
 </video>
 <p style="margin-top:8px;color:#9ca3af;">
-Real footage captured using NorthSky drones
+Cinematic aerial footage captured with beginner drones
 </p>
 </div>
 
-</section>
-
-<section class="section">
-<h3>Why Choose NorthSky</h3>
-<div>✔ Beginner-friendly controls</div>
-<div>✔ Stable cinematic footage</div>
-<div>✔ Designed for Canadian conditions</div>
-<div>✔ Fast local shipping</div>
 </section>
 
 </div>
