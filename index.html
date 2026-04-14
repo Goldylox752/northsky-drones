@@ -31,7 +31,6 @@ body{
   color:var(--text);
 }
 
-/* NAV */
 .nav{
   display:flex;
   justify-content:space-between;
@@ -40,14 +39,12 @@ body{
   opacity:0.8;
 }
 
-/* CONTAINER */
 .container{
   max-width:520px;
   margin:auto;
   padding:20px;
 }
 
-/* HERO */
 .hero{
   text-align:center;
 }
@@ -62,7 +59,6 @@ body{
   margin-top:6px;
 }
 
-/* IMAGE */
 .hero-img img{
   width:100%;
   height:260px;
@@ -71,7 +67,6 @@ body{
   margin-top:14px;
 }
 
-/* CARD */
 .card{
   background:var(--card);
   border:1px solid var(--border);
@@ -81,7 +76,6 @@ body{
   backdrop-filter:blur(14px);
 }
 
-/* PRICE */
 .price{
   font-size:28px;
   font-weight:700;
@@ -95,7 +89,6 @@ body{
   font-size:13px;
 }
 
-/* BUTTON */
 .btn{
   display:block;
   width:100%;
@@ -114,7 +107,6 @@ body{
   transform:translateY(-2px);
 }
 
-/* CTA COLORS */
 .primary{
   background:var(--cta);
   color:black;
@@ -125,7 +117,6 @@ body{
   color:white;
 }
 
-/* BADGES */
 .badges{
   display:flex;
   gap:6px;
@@ -143,7 +134,6 @@ body{
   color:var(--muted);
 }
 
-/* STICKY CTA */
 .sticky{
   position:fixed;
   bottom:0;
@@ -156,7 +146,6 @@ body{
   backdrop-filter:blur(10px);
 }
 
-/* POPUP */
 .popup{
   position:fixed;
   bottom:20px;
@@ -208,18 +197,14 @@ body{
       4K Camera • GPS Auto Return • 25min Flight • Beginner Friendly
     </p>
 
+    <!-- SINGLE STRIPE CHECKOUT -->
     <a class="btn primary"
        href="https://buy.stripe.com/fZu8wI2iv5qA2Fx0MM2ZO0z"
-       onclick="track('stripe_main')"
-       target="_blank">
-       🚀 Buy Now
+       target="_blank"
+       onclick="track('stripe_buy_now')">
+       🚀 Buy Now - $899
     </a>
 
-    <a class="btn stripe"
-       href="https://buy.stripe.com/fZu8wI2iv5qA2Fx0MM2ZO0z"
-       target="_blank">
-       💳 Checkout with Stripe
-    </a>
   </div>
 
   <div class="card">
@@ -249,7 +234,7 @@ body{
   <a class="btn primary"
      href="https://buy.stripe.com/fZu8wI2iv5qA2Fx0MM2ZO0z"
      target="_blank">
-     🔥 Buy Now
+     🔥 Buy Now - $899
   </a>
 </div>
 
