@@ -13,6 +13,7 @@
   --text:#ffffff;
   --muted:rgba(255,255,255,0.65);
   --accent:#38bdf8;
+  --cta:#22c55e;
 }
 
 *{
@@ -49,7 +50,6 @@ body{
 /* HERO */
 .hero{
   text-align:center;
-  margin-top:10px;
 }
 
 .hero h1{
@@ -86,7 +86,7 @@ body{
   font-size:28px;
   font-weight:700;
   margin-top:6px;
-  color:#22c55e;
+  color:var(--cta);
 }
 
 .old{
@@ -96,21 +96,33 @@ body{
 }
 
 /* BUTTON */
-button{
+.btn{
+  display:block;
   width:100%;
   margin-top:12px;
   padding:14px;
   border:none;
   border-radius:12px;
-  background:var(--accent);
   font-weight:700;
   cursor:pointer;
+  text-align:center;
+  text-decoration:none;
   transition:0.2s;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+/* CTA COLORS */
+.primary{
+  background:var(--cta);
   color:black;
 }
 
-button:hover{
-  transform:translateY(-2px);
+.stripe{
+  background:#635bff;
+  color:white;
 }
 
 /* BADGES */
@@ -170,7 +182,6 @@ button:hover{
 
 <div class="container">
 
-  <!-- HERO -->
   <div class="hero">
     <h1>Skymaster X1 Drone</h1>
     <p>Cinematic 4K aerial footage made simple</p>
@@ -180,7 +191,6 @@ button:hover{
     <img src="https://images.unsplash.com/photo-1506947411487-a56738267384?auto=format&fit=crop&w=1200&q=80">
   </div>
 
-  <!-- TRUST -->
   <div class="badges">
     <div class="badge">🔒 Secure Checkout</div>
     <div class="badge">🚚 Fast Shipping</div>
@@ -198,13 +208,20 @@ button:hover{
       4K Camera • GPS Auto Return • 25min Flight • Beginner Friendly
     </p>
 
-    <a href="https://buy.stripe.com/fZu8wI2iv5qA2Fx0MM2ZO0z"
-       onclick="track('stripe_click')">
-      <button>🚀 Buy Now</button>
+    <a class="btn primary"
+       href="https://buy.stripe.com/fZu8wI2iv5qA2Fx0MM2ZO0z"
+       onclick="track('stripe_main')"
+       target="_blank">
+       🚀 Buy Now
+    </a>
+
+    <a class="btn stripe"
+       href="https://buy.stripe.com/fZu8wI2iv5qA2Fx0MM2ZO0z"
+       target="_blank">
+       💳 Checkout with Stripe
     </a>
   </div>
 
-  <!-- FEATURES -->
   <div class="card">
     <h3>Why it wins</h3>
     <p style="color:var(--muted);margin-top:8px;">
@@ -215,7 +232,6 @@ button:hover{
     </p>
   </div>
 
-  <!-- VALUE -->
   <div class="card">
     <h3>What you get</h3>
     <p style="color:var(--muted);margin-top:8px;">
@@ -230,8 +246,10 @@ button:hover{
 
 <!-- STICKY CTA -->
 <div class="sticky">
-  <a href="https://buy.stripe.com/fZu8wI2iv5qA2Fx0MM2ZO0z">
-    <button>🔥 Buy Skymaster X1 Now</button>
+  <a class="btn primary"
+     href="https://buy.stripe.com/fZu8wI2iv5qA2Fx0MM2ZO0z"
+     target="_blank">
+     🔥 Buy Now
   </a>
 </div>
 
@@ -240,7 +258,7 @@ button:hover{
   <h3>Get Early Access Deals</h3>
   <input id="emailInput" placeholder="Email"
     style="width:100%;padding:10px;margin-top:10px;border-radius:10px;border:none;">
-  <button onclick="submitEmail()">Unlock</button>
+  <button onclick="submitEmail()" class="btn primary">Unlock</button>
 </div>
 
 <script>
@@ -253,9 +271,8 @@ function submitEmail(){
   if(!email.includes("@")) return alert("Invalid email");
 
   localStorage.setItem("emailCaptured","true");
-
   document.getElementById("popup").style.display="none";
-  alert("Discount unlocked (optional feature)");
+  alert("Unlocked!");
 }
 
 window.onload = () => {
