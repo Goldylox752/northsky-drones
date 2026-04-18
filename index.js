@@ -1,4 +1,74 @@
 <script>
+function goToCheckout(){
+  const session_id = localStorage.getItem("session_id") || "unknown";
+  const source = document.referrer || "direct";
+
+  const url = new URL("https://buy.stripe.com/9B6eV64qDcT20xpeDC2ZO0i");
+
+  url.searchParams.append("client_reference_id", session_id);
+
+  window.location.href = url.toString();
+}
+</script>
+
+
+import Stripe from "stripe";
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+export default async function handler(req, res) {
+  const sig = req.headers["stripe-signature"];
+
+  let event;
+
+  try {
+    event = stripe.webhooks.constructEvent(
+      req.body,
+      sig,
+      process.env.STRIPE_WEBHOOK_SECRET
+    );
+  } catch (err) {
+    console.log("❌ Webhook signature failed");
+    return res.status(400).send(`Webhook Error: ${err.message}`);
+  }
+
+  // ✅ PAYMENT SUCCESS
+  if (event.type === "checkout.session.completed") {
+    const session = event.data.object;
+
+    const email = session.customer_details?.email;
+    const amount = session.amount_total / 100;
+
+    // metadata you’ll pass from frontend
+    const session_id = session.metadata?.session_id || null;
+    const source = session.metadata?.source || "unknown";
+
+    // 🔥 SEND TO SUPABASE
+    await fetch(`${process.env.SUPABASE_URL}/rest/v1/purchases`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": process.env.SUPABASE_SERVICE_KEY,
+        "Authorization": `Bearer ${process.env.SUPABASE_SERVICE_KEY}`
+      },
+      body: JSON.stringify({
+        email,
+        amount,
+        session_id,
+        source,
+        created_at: new Date().toISOString()
+      })
+    });
+
+    console.log("💰 Purchase tracked:", email, amount);
+  }
+
+  res.status(200).json({ received: true });
+}
+
+
+
+<script>
 /* ================= CONFIG ================= */
 const SUPABASE_URL = "https://YOUR_PROJECT.supabase.co";
 const SUPABASE_KEY = "YOUR_PUBLIC_ANON_KEY";
