@@ -1,0 +1,196 @@
+<body>
+
+<div class="container">
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Inspect Roofs in Minutes — Not Hours</h1>
+  <p>GPS-Stabilized Drone Built for Contractors & First-Time Pilots</p>
+  <p style="color:var(--accent);font-size:13px;margin-top:6px;">
+    Built to work with modern lead systems like RoofFlow AI
+  </p>
+</div>
+
+<!-- VIDEO -->
+<div class="video">
+  <iframe src="https://www.youtube.com/embed/YOUR_ROOF_VIDEO" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<!-- TRUST -->
+<div class="badges">
+  <div class="badge">🇨🇦 Ships Across Canada</div>
+  <div class="badge">🔒 Secure Checkout</div>
+  <div class="badge">📦 30-Day Guarantee</div>
+</div>
+
+<!-- ECOSYSTEM CONNECTION -->
+<div class="card">
+  <h3>⚡ Part of the RoofFlow System</h3>
+  <p style="margin-top:8px;">
+    This drone is used alongside our lead platform to help contractors
+    inspect faster, quote smarter, and close more jobs.
+  </p>
+
+  <a class="btn" href="https://goldylox752.github.io/RoofFlow-AI/" target="_blank">
+    📈 View RoofFlow AI System
+  </a>
+</div>
+
+<!-- PROBLEM -->
+<div class="card">
+  <h3>The Bottleneck Isn’t Leads — It’s Speed</h3>
+  <p style="margin-top:8px;">
+    Most contractors lose deals because inspections take too long
+    or lack visual proof. Speed wins jobs.
+  </p>
+</div>
+
+<!-- SOLUTION -->
+<div class="card">
+  <h3>Upgrade Your Workflow</h3>
+  <p style="margin-top:8px;">
+    The Skymaster X1 lets you inspect roofs and job sites from the air—
+    faster, safer, and more professional.
+  </p>
+</div>
+
+<!-- BENEFITS -->
+<div class="card">
+  <h3>What This Unlocks</h3>
+  <p style="margin-top:8px;">
+    ✔ Inspect in minutes<br>
+    ✔ Show clients real damage<br>
+    ✔ Close jobs faster<br>
+    ✔ Handle more leads per day
+  </p>
+</div>
+
+<!-- ROI -->
+<div class="card">
+  <h3>Pays For Itself Fast</h3>
+  <p style="margin-top:8px;">
+    Charge $150–$300 per inspection.<br><br>
+    Most contractors recover the cost in just a few jobs.
+  </p>
+</div>
+
+<!-- OFFER -->
+<div class="card">
+  <h2>Complete Inspection Kit</h2>
+
+  <p style="margin-top:8px;color:var(--muted);">
+    ✔ Skymaster X1 Drone<br>
+    ✔ 3 Batteries (60+ min flight)<br>
+    ✔ Carry Case<br>
+    ✔ Spare Props<br>
+    ✔ Quick Start Guide
+  </p>
+
+  <p style="margin-top:10px;color:var(--accent);">
+    Total Value: $999+
+  </p>
+
+  <div class="old">$1299</div>
+  <div class="price">$899</div>
+
+  <a class="btn" href="https://buy.stripe.com/9B6eV64qDcT20xpeDC2ZO0i" target="_blank">
+    🚀 Start Inspecting Smarter
+  </a>
+</div>
+
+<!-- FEATURES -->
+<div class="card">
+  <h3>Built For Real Work</h3>
+  <p style="margin-top:8px;">
+    ✔ GPS hover stability<br>
+    ✔ Auto return home<br>
+    ✔ Smooth 1080P footage<br>
+    ✔ Beginner-friendly controls
+  </p>
+</div>
+
+<!-- SOCIAL -->
+<div class="card">
+  <h3>What Users Say</h3>
+  <p style="margin-top:8px;">
+    ★★★★★ “Saved hours on inspections.”<br><br>
+    ★★★★★ “Way more stable than cheap drones.”<br><br>
+    ★★★★★ “Paid for itself fast.”
+  </p>
+</div>
+
+<!-- CROSS SELL BACK -->
+<div class="card">
+  <h3>Want More Jobs to Use This On?</h3>
+  <p style="margin-top:8px;">
+    Pair this drone with a steady flow of roofing leads and scale your business faster.
+  </p>
+
+  <a class="btn" href="https://goldylox752.github.io/RoofFlow-AI/" target="_blank">
+    📈 Get Roofing Leads
+  </a>
+</div>
+
+<!-- SCARCITY -->
+<div class="card">
+  <h3>⚠️ Limited Stock</h3>
+  <p style="margin-top:8px;">
+    Inventory is limited. Next restock may take weeks.
+  </p>
+</div>
+
+<!-- FINAL CTA -->
+<div class="card">
+  <a class="btn" href="https://buy.stripe.com/9B6eV64qDcT20xpeDC2ZO0i" target="_blank">
+    🔥 Get Your Drone Now
+  </a>
+</div>
+
+<!-- GUARANTEE -->
+<div class="card">
+  <h3>30-Day Risk-Free Guarantee</h3>
+  <p style="margin-top:8px;">
+    Try it risk-free. If it doesn’t improve your workflow, get a full refund.
+  </p>
+</div>
+
+</div>
+
+<!-- STICKY CTA -->
+<div class="sticky">
+  <a class="btn" href="https://buy.stripe.com/9B6eV64qDcT20xpeDC2ZO0i" target="_blank">
+    🚀 Start Inspecting Smarter
+  </a>
+</div>
+
+<!-- EMAIL POPUP -->
+<div id="popup" class="popup">
+  <h3>Get $50 OFF</h3>
+  <p style="font-size:13px;margin-top:6px;">
+    Plus a guide on closing more jobs using drone inspections
+  </p>
+  <input id="emailInput" placeholder="Email"
+    style="width:100%;padding:10px;margin-top:10px;border-radius:10px;border:none;">
+  <button onclick="submitEmail()" class="btn">Unlock</button>
+</div>
+
+<script>
+function submitEmail(){
+  const email = document.getElementById("emailInput").value;
+  if(!email.includes("@")) return alert("Enter valid email");
+
+  localStorage.setItem("emailCaptured","true");
+  document.getElementById("popup").style.display="none";
+  alert("Discount unlocked!");
+}
+
+window.onload = () => {
+  if(!localStorage.getItem("emailCaptured")){
+    setTimeout(()=>{
+      document.getElementById("popup").style.display="block";
+    },3000);
+  }
+};
+</script>
+
+</body>
