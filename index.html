@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NorthSky | Roof Inspection System</title>
+<title>NorthSky | Skymaster X1 Inspection System</title>
 
 <style>
 :root{
@@ -31,10 +31,34 @@ body{
   padding:20px;
 }
 
-.hero{text-align:center;}
-.hero h1{font-size:28px;}
-.hero p{color:var(--muted);margin-top:6px;}
+/* HERO */
+.hero{
+  text-align:center;
+  padding:20px 0;
+}
 
+.hero h1{
+  font-size:30px;
+  line-height:1.2;
+}
+
+.hero p{
+  color:var(--muted);
+  margin-top:8px;
+}
+
+.badge{
+  font-size:11px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid var(--border);
+  color:var(--muted);
+  display:inline-block;
+  margin-top:10px;
+}
+
+/* CARDS */
 .card{
   background:var(--card);
   border:1px solid var(--border);
@@ -43,6 +67,11 @@ body{
   margin-top:16px;
 }
 
+.card h3{
+  margin-bottom:8px;
+}
+
+/* BUTTONS */
 .btn{
   display:block;
   width:100%;
@@ -58,19 +87,25 @@ body{
 }
 
 .alt-btn{
-  background:#38bdf8;
+  background:var(--accent);
   color:black;
 }
 
-.badge{
-  font-size:11px;
-  padding:6px 10px;
-  border-radius:999px;
-  background:rgba(255,255,255,0.05);
+/* FEATURE GRID */
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:10px;
+}
+
+.feature{
+  background:rgba(255,255,255,0.03);
   border:1px solid var(--border);
+  border-radius:12px;
+  padding:10px;
+  font-size:12px;
   color:var(--muted);
-  display:inline-block;
-  margin-top:8px;
 }
 </style>
 </head>
@@ -81,84 +116,86 @@ body{
 
 <!-- HERO -->
 <div class="hero">
-  <h1>From Roof Leads → To Paid Drone Inspections</h1>
-  <p>One system: generate leads, inspect faster, close more jobs</p>
+  <h1>Skymaster X1 Inspection System</h1>
+  <p>From leads → to inspections → to closed roofing jobs</p>
+  <span class="badge">NorthSky Drone Systems</span>
 </div>
 
-<!-- ROOFFLOW CONNECTION -->
+<!-- SYSTEM FLOW -->
 <div class="card">
-  <h3>Step 1 — Get Roofing Leads</h3>
-
-  <p style="margin-top:8px;color:var(--muted);">
-    Use RoofFlow AI to generate and qualify roofing leads automatically.
+  <h3>Step 1 — Generate Roofing Leads</h3>
+  <p style="color:var(--muted); margin-top:6px;">
+    Use RoofFlow AI to automatically generate and qualify roofing customers.
   </p>
 
-  <span class="badge">Lead Generation System</span>
-
   <a class="btn alt-btn" href="https://goldylox752.github.io/RoofFlow-AI/" target="_blank">
-    ⚡ Open RoofFlow AI
+    ⚡ Launch RoofFlow AI
   </a>
 </div>
 
 <!-- BRIDGE -->
 <div class="card">
-  <h3>Step 2 — Turn Leads Into Inspections</h3>
-
-  <p style="margin-top:8px;color:var(--muted);">
-    Instead of climbing roofs manually, inspect properties in minutes using aerial footage.
+  <h3>Step 2 — Aerial Inspection Workflow</h3>
+  <p style="color:var(--muted); margin-top:6px;">
+    Replace manual roof climbing with fast aerial inspection capture.
   </p>
 
-  <p style="margin-top:8px;color:var(--accent);">
-    Faster inspections = more quotes = more closed deals
+  <p style="color:var(--accent); margin-top:10px;">
+    Faster inspections = more quotes = higher close rate
   </p>
 </div>
 
-<!-- DRONE OFFER -->
+<!-- DRONE SPEC CORE -->
 <div class="card">
-  <h3>Step 3 — Inspection Tool</h3>
+  <h3>Skymaster X1 Performance System</h3>
 
-  <p style="margin-top:8px;color:var(--muted);">
-    The Skymaster X1 connects directly into your RoofFlow pipeline.
-  </p>
+  <div class="grid">
+    <div class="feature">🧭 GPS + Optical Flow Stability</div>
+    <div class="feature">🔋 Brushless Motor System</div>
+    <div class="feature">📡 3000M Range Control</div>
+    <div class="feature">📷 6K/8K Camera System</div>
+    <div class="feature">🛡️ Auto Return Home</div>
+    <div class="feature">⚠️ 4-Way Obstacle Avoidance</div>
+  </div>
 
-  <p style="margin-top:10px;color:var(--muted);">
-    ✔ GPS stability<br>
-    ✔ 1080P aerial footage<br>
-    ✔ Auto return home<br>
-    ✔ Beginner friendly
+  <p style="margin-top:12px;color:var(--muted);">
+    Built for stable real-world flight performance and inspection workflows.
   </p>
 
   <a class="btn" href="https://buy.stripe.com/9B6eV64qDcT20xpeDC2ZO0i">
-    🚀 Get Inspection Drone
+    🚀 Get Skymaster X1 System
   </a>
 </div>
 
-<!-- ROI -->
+<!-- VALUE STACK -->
 <div class="card">
-  <h3>Why This Works</h3>
+  <h3>Why This System Works</h3>
 
-  <p style="margin-top:8px;color:var(--muted);">
-    RoofFlow AI brings you the lead.<br>
-    The drone closes the deal faster.<br><br>
+  <p style="color:var(--muted); margin-top:6px;">
+    RoofFlow AI generates the lead.<br>
+    Skymaster X1 captures the inspection.<br>
+    You close jobs faster with less labour and time.
+  </p>
 
-    Contractors using this system increase close rate by handling more inspections per day.
+  <p style="color:var(--accent); margin-top:10px;">
+    Designed for roofing contractors scaling inspection volume.
   </p>
 </div>
 
 <!-- FINAL CTA -->
 <div class="card">
-  <h3>Build the Full System</h3>
+  <h3>Build the Full Roofing System</h3>
 
-  <p style="margin-top:8px;color:var(--muted);">
-    Don’t just get a drone. Build the full roofing workflow system.
+  <p style="color:var(--muted); margin-top:6px;">
+    Don’t just buy a drone—build a complete lead-to-inspection workflow.
   </p>
 
-  <a class="btn" href="https://goldylox752.github.io/RoofFlow-AI/">
+  <a class="btn alt-btn" href="https://goldylox752.github.io/RoofFlow-AI/">
     🔗 Start With RoofFlow AI
   </a>
 
   <a class="btn" href="https://buy.stripe.com/9B6eV64qDcT20xpeDC2ZO0i">
-    🚀 Add Inspection Drone
+    🚀 Add Skymaster X1
   </a>
 </div>
 
