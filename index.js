@@ -1,4 +1,5 @@
 <script>
+
 /* ================= CONFIG ================= */
 const SUPABASE_URL = "https://YOUR_PROJECT.supabase.co";
 const SUPABASE_KEY = "YOUR_PUBLIC_ANON_KEY";
@@ -27,19 +28,27 @@ function getSessionId(){
 
 const SESSION_ID = getSessionId();
 
-/* ================= UTMS ================= */
+/* ================= UTM SYSTEM ================= */
 function getUTMs(){
   const p = new URLSearchParams(window.location.search);
 
   return {
     utm_source: p.get("utm_source") || "direct",
-    utm_campaign: p.get("utm_campaign") || null,
-    utm_content: p.get("utm_content") || null,
+    utm_campaign: p.get("utm_campaign") || "none",
+    utm_content: p.get("utm_content") || "none",
     cpc: parseFloat(p.get("cpc")) || 0
   };
 }
 
-/* ================= ROOFFLOW → DRONE BRIDGE ================= */
+/* ================= FUNNEL STAGES (NEW) ================= */
+function funnelStage(name, meta = {}){
+  track("funnel_stage", {
+    stage: name,
+    ...meta
+  });
+}
+
+/* ================= ROOFFLOW BRIDGE ================= */
 function captureFromRoofFlow(){
 
   const p = new URLSearchParams(window.location.search);
@@ -63,22 +72,20 @@ function captureFromRoofFlow(){
 
   localStorage.setItem("funnel_source", from);
 
-  track("funnel_entry", {
-    session_id,
-    utm_source,
-    utm_campaign,
-    from
-  });
-
-  console.log("🚀 RoofFlow → Drone bridge active", {
+  funnelStage("entry", {
+    from,
     session_id,
     utm_source,
     utm_campaign
   });
+
+  console.log("🚀 Funnel entry captured");
 }
 
 /* ================= CORE TRACKING ================= */
 async function track(event, meta = {}){
+
+  if (!supabase) return;
 
   const payload = {
     event,
@@ -93,12 +100,23 @@ async function track(event, meta = {}){
     time: new Date().toISOString()
   };
 
-  if (!supabase) return;
-
   try {
     await supabase.from("events").insert([payload]);
   } catch (e) {
     console.log("track error:", e.message);
+  }
+}
+
+/* ================= LEAD SCORE (NEW) ================= */
+function updateLeadScore(points){
+
+  let score = parseInt(localStorage.getItem("lead_score") || "0");
+  score += points;
+
+  localStorage.setItem("lead_score", score);
+
+  if (score >= 50){
+    funnelStage("high_intent_lead", { score });
   }
 }
 
@@ -111,18 +129,18 @@ function goToCheckout(){
 
   url.searchParams.set("client_reference_id", SESSION_ID);
   url.searchParams.set("utm_source", utm.utm_source);
-  url.searchParams.set("utm_campaign", utm.utm_campaign || "");
-  url.searchParams.set("utm_content", utm.utm_content || "");
+  url.searchParams.set("utm_campaign", utm.utm_campaign);
+  url.searchParams.set("utm_content", utm.utm_content);
   url.searchParams.set("cpc", utm.cpc);
 
-  track("checkout_click", {
-    source: utm.utm_source
-  });
+  funnelStage("checkout_click");
+
+  updateLeadScore(20);
 
   window.location.href = url.toString();
 }
 
-/* ================= CTA TRACKING ================= */
+/* ================= CTA TRACKING (UPGRADED) ================= */
 function bindCTAs(){
 
   document.querySelectorAll("a").forEach(a => {
@@ -132,15 +150,18 @@ function bindCTAs(){
       const href = a.href || "";
 
       if (href.includes("stripe")){
-        track("cta_click", { type: "purchase" });
+        funnelStage("purchase_intent");
+        updateLeadScore(30);
       }
 
       if (href.includes("RoofFlow")){
-        track("view_roofflow");
+        funnelStage("roofflow_click");
+        updateLeadScore(10);
       }
 
       if (href.includes("northsky")){
-        track("view_drone");
+        funnelStage("product_view");
+        updateLeadScore(15);
       }
 
     });
@@ -148,10 +169,14 @@ function bindCTAs(){
   });
 }
 
-/* ================= SCROLL DEPTH ================= */
+/* ================= SCROLL DEPTH (UPGRADED) ================= */
 function trackScroll(){
 
-  let fired = false;
+  let checkpoints = {
+    30: false,
+    60: false,
+    90: false
+  };
 
   window.addEventListener("scroll", () => {
 
@@ -159,16 +184,30 @@ function trackScroll(){
       window.scrollY /
       (document.body.scrollHeight - window.innerHeight);
 
-    if (percent > 0.6 && !fired){
-      fired = true;
-      track("scroll_60");
+    const p = Math.floor(percent * 100);
+
+    if (p > 30 && !checkpoints[30]){
+      checkpoints[30] = true;
+      funnelStage("scroll_30");
+    }
+
+    if (p > 60 && !checkpoints[60]){
+      checkpoints[60] = true;
+      funnelStage("scroll_60");
+      updateLeadScore(5);
+    }
+
+    if (p > 90 && !checkpoints[90]){
+      checkpoints[90] = true;
+      funnelStage("scroll_90");
+      updateLeadScore(10);
     }
 
   });
 
 }
 
-/* ================= EMAIL POPUP ================= */
+/* ================= POPUP ================= */
 function showPopup(){
 
   if (localStorage.getItem("emailCaptured")) return;
@@ -178,7 +217,7 @@ function showPopup(){
 
     if (popup){
       popup.style.display = "block";
-      track("popup_shown");
+      funnelStage("popup_shown");
     }
   }, 3000);
 
@@ -196,6 +235,10 @@ async function submitEmail(){
 
   localStorage.setItem("emailCaptured", "true");
 
+  funnelStage("email_capture");
+
+  updateLeadScore(25);
+
   await track("email_capture", { email });
 
   if (supabase){
@@ -203,11 +246,12 @@ async function submitEmail(){
       email,
       session_id: SESSION_ID,
       source: getUTMs().utm_source,
+      lead_score: parseInt(localStorage.getItem("lead_score") || "0"),
       created_at: new Date().toISOString()
     }]);
   }
 
-  alert("Discount unlocked!");
+  alert("Access unlocked!");
   document.getElementById("popup").style.display = "none";
 }
 
@@ -216,13 +260,12 @@ window.addEventListener("load", () => {
 
   captureFromRoofFlow();
 
-  track("page_view", {
-    source: getUTMs().utm_source
-  });
+  funnelStage("page_view");
 
   bindCTAs();
   trackScroll();
   showPopup();
 
 });
+
 </script>
