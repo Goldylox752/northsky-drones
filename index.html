@@ -3,506 +3,143 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Skymaster X1 v2 | Professional Roofing Inspection Drone</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
 
+  <title>Skymaster X1 v2 | Roofing Inspection Drone</title>
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-528699336"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-528699336');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
     body {
-      font-family: 'Inter', sans-serif;
+      margin: 0;
+      font-family: Inter, sans-serif;
       background: radial-gradient(circle at 10% 20%, #0a0f2a, #02040e);
       color: #f0f3ff;
-      line-height: 1.5;
-      scroll-behavior: smooth;
     }
 
-    /* glass morphism components */
-    .glass-card {
-      background: rgba(15, 23, 42, 0.6);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 2rem;
-      transition: transform 0.2s ease, border-color 0.2s;
-    }
-    .glass-card:hover {
-      border-color: rgba(56, 189, 248, 0.4);
-      transform: translateY(-2px);
+    .container { max-width: 1200px; margin: auto; padding: 20px; }
+
+    nav {
+      display:flex;
+      justify-content:space-between;
+      padding:20px 0;
+      border-bottom:1px solid rgba(255,255,255,0.1);
     }
 
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
+    nav a {
+      color:white;
+      margin-left:15px;
+      text-decoration:none;
+      opacity:0.8;
     }
 
-    /* navigation */
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    .logo {
-      font-size: 1.6rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #fff, #38bdf8);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      letter-spacing: -0.3px;
-    }
-    .nav-badge {
-      background: rgba(56, 189, 248, 0.15);
-      padding: 0.4rem 1rem;
-      border-radius: 3rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      border: 1px solid rgba(56, 189, 248, 0.4);
-    }
+    nav a:hover { opacity:1; }
 
-    /* hero section */
-    .hero {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 2rem;
-      padding: 3rem 0 2rem;
-    }
-    .hero-content {
-      flex: 1.2;
-    }
-    .hero h1 {
-      font-size: 3.2rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-      background: linear-gradient(to right, #ffffff, #a5f3fc);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .hero p {
-      margin-top: 1rem;
-      opacity: 0.8;
-      font-size: 1.05rem;
-      max-width: 550px;
-    }
-    .hero-visual {
-      flex: 0.9;
-      background: radial-gradient(ellipse at center, #1e293b60, transparent);
-      border-radius: 2rem;
-      text-align: center;
-      padding: 1rem;
-    }
-    .drone-icon {
-      font-size: 8rem;
-      filter: drop-shadow(0 0 15px #38bdf880);
-    }
-    .urgency {
-      background: rgba(251, 191, 36, 0.15);
-      border-left: 3px solid #fbbf24;
-      padding: 0.8rem 1rem;
-      border-radius: 1rem;
-      margin: 1.2rem 0;
-      font-weight: 500;
-      font-size: 0.9rem;
-    }
+    .hero { text-align:center; padding:80px 20px; }
+
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.6rem;
-      padding: 0.9rem 2rem;
-      border-radius: 3rem;
-      font-weight: 700;
-      text-decoration: none;
-      transition: 0.2s;
-      cursor: pointer;
-      border: none;
-      font-size: 1rem;
+      display:inline-block;
+      padding:14px 24px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:700;
     }
+
     .btn-primary {
-      background: linear-gradient(105deg, #22c55e, #16a34a);
-      color: #0a0f2a;
-      box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);
+      background:#22c55e;
+      color:#000;
     }
-    .btn-primary:hover {
-      transform: scale(0.97);
-      filter: brightness(1.05);
-    }
+
     .btn-outline {
-      background: transparent;
-      border: 1px solid #38bdf8;
-      color: #e0f2fe;
-    }
-    .trust-badge {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-      margin-top: 1rem;
-      font-size: 0.75rem;
-      opacity: 0.7;
-      flex-wrap: wrap;
+      border:1px solid #38bdf8;
+      color:white;
     }
 
-    /* features grid */
-    .section-title {
-      font-size: 1.8rem;
-      font-weight: 800;
-      margin: 2rem 0 1rem;
-      text-align: center;
-    }
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1.2rem;
-      margin: 1.5rem 0;
-    }
-    .feature-card {
-      background: rgba(0, 0, 0, 0.35);
-      border-radius: 1.5rem;
-      padding: 1.2rem;
-      border: 1px solid rgba(255,255,255,0.05);
-      transition: all 0.2s;
-    }
-    .feature-card i {
-      font-size: 1.8rem;
-      color: #38bdf8;
-      margin-bottom: 0.5rem;
-    }
-    .feature-card h4 {
-      font-size: 1.1rem;
-      margin-bottom: 0.3rem;
-    }
-    .feature-card p {
-      font-size: 0.8rem;
-      opacity: 0.7;
+    .card {
+      background: rgba(255,255,255,0.05);
+      padding:20px;
+      border-radius:16px;
+      margin-top:20px;
     }
 
-    /* roi & comparison */
-    .comparison {
-      background: rgba(0, 0, 0, 0.4);
-      border-radius: 2rem;
-      padding: 1.5rem;
-      margin: 2rem 0;
-    }
-    .stats {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-      text-align: center;
-    }
-    .stat-item {
-      flex: 1;
-      background: rgba(255,255,255,0.03);
-      border-radius: 1.2rem;
-      padding: 1rem;
-    }
-    .stat-number {
-      font-size: 2rem;
-      font-weight: 800;
-      color: #22c55e;
+    .cta {
+      text-align:center;
+      margin:60px 0;
     }
 
-    /* testimonial */
-    .testimonial {
-      background: rgba(56, 189, 248, 0.05);
-      border-radius: 1.8rem;
-      padding: 1.5rem;
-      margin: 2rem 0;
-      text-align: center;
-    }
-    .testimonial i {
-      font-size: 2rem;
-      opacity: 0.5;
-      margin-bottom: 0.5rem;
-    }
-
-    /* faq */
-    .faq-item {
-      background: rgba(0,0,0,0.25);
-      border-radius: 1.2rem;
-      padding: 1rem;
-      margin-bottom: 0.8rem;
-      cursor: pointer;
-    }
-    .faq-question {
-      font-weight: 700;
-      display: flex;
-      justify-content: space-between;
-    }
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-      font-size: 0.85rem;
-      opacity: 0.8;
-    }
-    .faq-item.active .faq-answer {
-      max-height: 200px;
-      margin-top: 0.6rem;
-    }
-
-    /* cta section */
-    .cta-section {
-      text-align: center;
-      margin: 2.5rem 0;
-      padding: 2rem;
-      border-radius: 2rem;
-    }
-    .countdown {
-      font-size: 1.2rem;
-      font-weight: 800;
-      background: #1e293b;
-      display: inline-block;
-      padding: 0.3rem 1rem;
-      border-radius: 3rem;
-      margin: 0.5rem 0;
-    }
-    footer {
-      text-align: center;
-      padding: 2rem 0;
-      opacity: 0.5;
-      font-size: 0.7rem;
-    }
-
-    @media (max-width: 780px) {
-      .hero { flex-direction: column; text-align: center; }
-      .hero h1 { font-size: 2.2rem; }
-      .btn { width: 100%; justify-content: center; }
-      .stats { flex-direction: column; }
-    }
   </style>
 </head>
+
 <body>
 
 <div class="container">
-  <div class="nav">
-    <div class="logo"><i class="fas fa-drone"></i> Skymaster X1 v2</div>
-    <div class="nav-badge">Roofing Inspection System · NorthSky Ecosystem</div>
-  </div>
 
-  <!-- HERO SECTION -->
-  <div class="hero">
-    <div class="hero-content">
-      <h1>Replace Roof Climbing With Aerial Inspection Revenue</h1>
-      <p>Professional-grade drone system built for roofing contractors — inspect faster, quote faster, close more jobs without ladders or risk.</p>
-      <div class="urgency">
-        <i class="fas fa-shipping-fast"></i> Limited import batch — Ships in 7–10 days (DDP Canada included)
-      </div>
-      <a href="https://buy.stripe.com/9B6eV64qDcT20xpeDC2ZO0i" class="btn btn-primary" target="_blank">
-        <i class="fas fa-bolt"></i> Secure Your Unit — $899
-      </a>
-      <div class="trust-badge">
-        <span><i class="fas fa-shield-alt"></i> 1-year warranty</span>
-        <span><i class="fas fa-truck"></i> DDP shipping</span>
-        <span><i class="fas fa-credit-card"></i> Secure checkout</span>
-        <span><i class="fas fa-chart-line"></i> 500+ contractors</span>
-      </div>
+  <!-- NAV -->
+  <nav>
+    <div><strong>Skymaster X1 v2</strong></div>
+    <div>
+      <a href="/">Home</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/apply">Apply</a>
+      <a href="/dashboard">Dashboard</a>
     </div>
-    <div class="hero-visual">
-      <div class="drone-icon"><i class="fas fa-drone"></i></div>
-      <div style="font-size: 0.8rem; margin-top: 0.5rem;">X1 v2 · 4K Inspection Ready</div>
-    </div>
-  </div>
+  </nav>
 
-  <!-- FEATURE GRID -->
-  <div class="section-title">⚙️ Built for Real Field Work</div>
-  <div class="features-grid">
-    <div class="feature-card"><i class="fas fa-map-marker-alt"></i><h4>GPS + Optical Stability</h4><p>Precision hover & wind resistance</p></div>
-    <div class="feature-card"><i class="fas fa-wind"></i><h4>Brushless Wind-Resistant</h4><p>Handles 25+ km/h gusts</p></div>
-    <div class="feature-card"><i class="fas fa-satellite-dish"></i><h4>3000M Long Range</h4><p>Control & FPV video link</p></div>
-    <div class="feature-card"><i class="fas fa-camera"></i><h4>4K Inspection Camera</h4><p>High-res zoom & defect detection</p></div>
-    <div class="feature-card"><i class="fas fa-shield-virus"></i><h4>4‑Way Obstacle Avoidance</h4><p>Front/rear + downward sensors</p></div>
-    <div class="feature-card"><i class="fas fa-undo-alt"></i><h4>Auto Return + Fail‑Safe</h4><p>Low battery / signal loss RTH</p></div>
-    <div class="feature-card"><i class="fas fa-weight-hanging"></i><h4>Lightweight Field Design</h4><p>Sub-250g compliant option</p></div>
-    <div class="feature-card"><i class="fas fa-suitcase"></i><h4>Contractor Carry Case</h4><p>Foam padded, extra batteries slot</p></div>
-  </div>
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Roof Inspection Without Climbing</h1>
+    <p>4K aerial inspections built for roofing contractors.</p>
 
-  <!-- WHY CONTRACTORS BUY -->
-  <div class="glass-card" style="padding: 1.5rem; margin: 1rem 0;">
-    <div class="section-title" style="margin-top: 0;">📈 Why Roofing Contractors Buy This</div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1rem; text-align: center;">
-      <div><i class="fas fa-ladder" style="color:#fbbf24;"></i><p style="font-weight:700;">Zero climbing risk</p><span style="font-size:12px;">Eliminate ladder accidents</span></div>
-      <div><i class="fas fa-stopwatch"></i><p style="font-weight:700;">2x inspection speed</p><span style="font-size:12px;">20+ roofs per day</span></div>
-      <div><i class="fas fa-file-invoice-dollar"></i><p style="font-weight:700;">Higher close rates</p><span style="font-size:12px;">Visual proof = trust</span></div>
-      <div><i class="fas fa-chart-simple"></i><p style="font-weight:700;">+$3k per week ROI</p><span style="font-size:12px;">Average reported</span></div>
-    </div>
-  </div>
-
-  <!-- ROI / STATS -->
-  <div class="comparison">
-    <h3 style="text-align: center; margin-bottom: 1rem;"><i class="fas fa-chart-line"></i> Real ROI — From Contractors</h3>
-    <div class="stats">
-      <div class="stat-item"><div class="stat-number">68%</div><div>Faster estimates</div></div>
-      <div class="stat-item"><div class="stat-number">$1,200</div><div>Saved monthly on ladder crews</div></div>
-      <div class="stat-item"><div class="stat-number">3.5x</div><div>More inspections / week</div></div>
-    </div>
-  </div>
-
-  <!-- ECOSYSTEM INTEGRATION -->
-  <div class="glass-card" style="padding: 1.5rem;">
-    <div class="section-title" style="margin-top: 0;">🔄 Full Revenue Ecosystem</div>
-    <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; text-align: center;">
-      <div style="flex:1;"><i class="fas fa-cloud-upload-alt fa-2x"></i><br><strong>RoofFlow AI</strong><br><span style="font-size:12px;">Lead generation</span></div>
-      <div style="flex:1;"><i class="fas fa-drone fa-2x"></i><br><strong>Skymaster X1 v2</strong><br><span style="font-size:12px;">Inspection capture</span></div>
-      <div style="flex:1;"><i class="fas fa-chart-pie fa-2x"></i><br><strong>Revenue OS</strong><br><span style="font-size:12px;">Close & manage</span></div>
-    </div>
-    <p style="text-align:center; margin-top:1rem; opacity:0.7; font-size:0.85rem;">Skymaster integrates with NorthSky AI Auditor to auto‑tag damage and generate reports.</p>
-  </div>
-
-  <!-- TESTIMONIAL -->
-  <div class="testimonial">
-    <i class="fas fa-quote-left"></i>
-    <p style="font-style: italic; max-width: 700px; margin: 0.5rem auto;">“We doubled our inspection capacity in the first week. The image quality helps us upsell repairs without pushback. Best investment for our roofing company.”</p>
-    <div style="margin-top: 0.5rem;">— Jake Morrison, Elite Roofing Solutions</div>
-    <div><i class="fas fa-star" style="color:#fbbf24;"></i><i class="fas fa-star" style="color:#fbbf24;"></i><i class="fas fa-star" style="color:#fbbf24;"></i><i class="fas fa-star" style="color:#fbbf24;"></i><i class="fas fa-star" style="color:#fbbf24;"></i></div>
-  </div>
-
-  <!-- FAQ SECTION -->
-  <div class="section-title">❓ Frequently Asked Questions</div>
-  <div id="faqContainer">
-    <div class="faq-item">
-      <div class="faq-question">Is the drone ready to fly out of the box? <i class="fas fa-chevron-down"></i></div>
-      <div class="faq-answer">Yes, Skymaster X1 v2 comes pre‑calibrated. Charge batteries, install the app, and you're ready for inspections. Includes quick start guide.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question">What about Canadian regulations? <i class="fas fa-chevron-down"></i></div>
-      <div class="faq-answer">The sub‑250g variant complies with basic operations in Canada. For heavier payload, we include a MicroSD card with registration guidance. DDP shipping covers all duties.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question">Does it work with NorthSky software? <i class="fas fa-chevron-down"></i></div>
-      <div class="faq-answer">Absolutely. The inspection feed integrates with NorthSky AI Auditor for automatic defect detection and report generation. See demo after purchase.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question">What’s the warranty and returns? <i class="fas fa-chevron-down"></i></div>
-      <div class="faq-answer">1‑year manufacturer warranty against defects. 14‑day return window if unopened. We stand behind every unit.</div>
-    </div>
-  </div>
-
-  <!-- FINAL CTA + COUNTDOWN -->
-  <div class="cta-section glass-card">
-    <h2 style="font-size: 1.8rem;">⚡ Limited batch available</h2>
-    <div class="countdown" id="countdownTimer"></div>
-    <p style="margin: 1rem 0;">Current stock: <strong id="stockCount">27</strong> units remaining (updates daily)</p>
-    <a href="https://buy.stripe.com/9B6eV64qDcT20xpeDC2ZO0i" class="btn btn-primary" style="font-size: 1.2rem; padding: 1rem 2.5rem;" target="_blank">
-      <i class="fas fa-lock"></i> Secure Skymaster X1 v2 — $899
+    <a class="btn btn-primary"
+       href="https://buy.stripe.com/9B6eV64qDcT20xpeDC2ZO0i">
+       Buy Now — $899
     </a>
-    <div class="trust-badge" style="justify-content: center; margin-top: 1.2rem;">
-      <span><i class="fab fa-cc-visa"></i> Stripe secure</span>
-      <span><i class="fas fa-undo-alt"></i> 30-day returns</span>
-      <span><i class="fas fa-headset"></i> Contractor support</span>
-    </div>
+
+    <a class="btn btn-outline" href="/pricing">View Ecosystem</a>
+
+    <p style="opacity:0.6;margin-top:10px;">
+      Limited contractor batches per region
+    </p>
+  </section>
+
+  <!-- FEATURES -->
+  <div class="card">
+    <h2>Why Contractors Use It</h2>
+    <ul>
+      <li>No roof climbing risk</li>
+      <li>Faster inspections (2–3x speed)</li>
+      <li>Higher close rates with visual proof</li>
+    </ul>
   </div>
-  <footer>
-    <i class="fas fa-drone"></i> Skymaster X1 v2 — Part of the NorthSky Revenue Ecosystem. Specifications subject to minor updates. Shipping worldwide (DDP Canada, US, EU).
-  </footer>
+
+  <!-- ECOSYSTEM -->
+  <div class="card">
+    <h2>NorthSky Ecosystem</h2>
+    <ul>
+      <li>RoofFlow AI → Leads</li>
+      <li>Skymaster → Inspection</li>
+      <li>Revenue OS → Closing</li>
+    </ul>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <h2>Ready to upgrade your roofing business?</h2>
+    <a class="btn btn-primary"
+       href="https://buy.stripe.com/9B6eV64qDcT20xpeDC2ZO0i">
+       Secure Unit Now
+    </a>
+  </div>
+
 </div>
 
-<script>
-  // Countdown timer: 7 days from now (simulate limited batch)
-  function startCountdown() {
-    const targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() + 7);
-    targetDate.setHours(23, 59, 59, 999);
-
-    const timerElement = document.getElementById('countdownTimer');
-    if (!timerElement) return;
-
-    function updateTimer() {
-      const now = new Date();
-      const diff = targetDate - now;
-      if (diff <= 0) {
-        timerElement.innerHTML = "Batch sold out — next preorder opening soon";
-        return;
-      }
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (86400000)) / (3600000));
-      const minutes = Math.floor((diff % 3600000) / 60000);
-      const seconds = Math.floor((diff % 60000) / 1000);
-      timerElement.innerHTML = `⏳ Next shipment in ${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }
-    updateTimer();
-    setInterval(updateTimer, 1000);
-  }
-
-  // simulate decreasing stock based on random but realistic decay (demo)
-  function animateStock() {
-    let stockSpan = document.getElementById('stockCount');
-    if (!stockSpan) return;
-    let stock = parseInt(stockSpan.innerText) || 27;
-    // every 30 seconds decrease by 1 until 0 (just for urgency effect)
-    const interval = setInterval(() => {
-      if (stock <= 0) {
-        clearInterval(interval);
-        stockSpan.innerText = "0 — sold out";
-        return;
-      }
-      stock--;
-      stockSpan.innerText = stock;
-      if (stock === 10) {
-        stockSpan.style.color = "#fbbf24";
-      } else if (stock === 3) {
-        stockSpan.style.color = "#ef4444";
-      }
-    }, 45000); // decrease every 45 sec
-  }
-
-  // FAQ toggle
-  function initFaq() {
-    const faqs = document.querySelectorAll('.faq-item');
-    faqs.forEach(faq => {
-      const questionDiv = faq.querySelector('.faq-question');
-      questionDiv.addEventListener('click', () => {
-        faq.classList.toggle('active');
-        const icon = questionDiv.querySelector('i');
-        if (faq.classList.contains('active')) {
-          icon.classList.remove('fa-chevron-down');
-          icon.classList.add('fa-chevron-up');
-        } else {
-          icon.classList.remove('fa-chevron-up');
-          icon.classList.add('fa-chevron-down');
-        }
-      });
-    });
-  }
-
-  // smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      const href = this.getAttribute('href');
-      if (href === "#" || href === "") return;
-      const target = document.querySelector(href);
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
-  });
-
-  // add small animation for hero button on hover
-  const ctaBtn = document.querySelector('.btn-primary');
-  if (ctaBtn) {
-    ctaBtn.addEventListener('mouseenter', () => {
-      ctaBtn.style.transform = 'scale(0.98)';
-    });
-    ctaBtn.addEventListener('mouseleave', () => {
-      ctaBtn.style.transform = '';
-    });
-  }
-
-  startCountdown();
-  animateStock();
-  initFaq();
-</script>
 </body>
 </html>
