@@ -2,58 +2,89 @@ import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-// 🔒 safer mapping instead of dynamic env lookup
-const PRICE_MAP = {
-  starter: process.env.STRIPE_PRICE_STARTER,
-  growth: process.env.STRIPE_PRICE_GROWTH,
-  domination: process.env.STRIPE_PRICE_DOMINATION,
+// Required for Stripe signature verification
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+const getRawBody = async (req) => {
+  const chunks = [];
+  for await (const chunk of req) {
+    chunks.push(typeof chunk === "string" ? Buffer.from(chunk) : chunk);
+  }
+  return Buffer.concat(chunks);
 };
 
 export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).send("Method not allowed");
+  }
+
+  const signature = req.headers["stripe-signature"];
+
+  let event;
+
   try {
-    if (req.method !== "POST") {
-      return res.status(405).json({ error: "Method not allowed" });
+    const rawBody = await getRawBody(req);
+
+    event = stripe.webhooks.constructEvent(
+      rawBody,
+      signature,
+      process.env.STRIPE_WEBHOOK_SECRET
+    );
+  } catch (err) {
+    console.error("Webhook signature verification failed:", err.message);
+    return res.status(400).send(`Webhook Error: ${err.message}`);
+  }
+
+  try {
+    switch (event.type) {
+
+      // ✅ Payment successful (MAIN EVENT)
+      case "checkout.session.completed": {
+        const session = event.data.object;
+
+        const userId = session.metadata?.user_id;
+        const plan = session.metadata?.plan;
+
+        console.log("Payment completed:", { userId, plan });
+
+        // 👉 Activate user here (DB logic)
+        // Example:
+        // await db.users.update({
+        //   where: { id: userId },
+        //   data: {
+        //     plan,
+        //     status: "active",
+        //     stripe_customer_id: session.customer,
+        //   },
+        // });
+
+        break;
+      }
+
+      // 🔄 Subscription updated
+      case "customer.subscription.updated": {
+        console.log("Subscription updated");
+        break;
+      }
+
+      // ❌ Subscription canceled
+      case "customer.subscription.deleted": {
+        console.log("Subscription canceled");
+        break;
+      }
+
+      default:
+        console.log("Unhandled event:", event.type);
     }
 
-    const { plan, userId } = req.body;
-
-    if (!plan || !userId) {
-      return res.status(400).json({ error: "Missing plan or userId" });
-    }
-
-    const priceId = PRICE_MAP[plan];
-
-    if (!priceId) {
-      return res.status(400).json({ error: "Invalid plan selected" });
-    }
-
-    const session = await stripe.checkout.sessions.create({
-      mode: "subscription",
-      payment_method_types: ["card"],
-
-      line_items: [
-        {
-          price: priceId,
-          quantity: 1,
-        },
-      ],
-
-      metadata: {
-        user_id: userId,
-        plan,
-      },
-
-      success_url: `${process.env.DOMAIN}/dashboard?success=1`,
-      cancel_url: `${process.env.DOMAIN}/pricing`,
-    });
-
-    return res.status(200).json({ url: session.url });
+    return res.json({ received: true });
 
   } catch (err) {
-    console.error("Stripe Checkout Error:", err);
-
-    return res.status(500).json({
-      error: "Failed to create checkout session",
-    });
+    console.error("Webhook handler error:", err);
+    return res.status(500).json({ error: "Webhook processing failed" });
   }
 }
